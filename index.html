@@ -1,3 +1,4 @@
+<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -132,7 +133,7 @@ select.fc option{background:var(--card)}
     <button class="ni" data-p="importar">⊞ Importar Planilha</button>
     <button class="ni" data-p="planilha">⊟ Dados Importados</button>
   </div>
-  <div class="sf">João Silva · operador<br><span style="font-size:10px;color:var(--t3)">278 registros ativos</span></div>
+  <div class="sf">João Silva · operador<br><span style="font-size:10px;color:var(--t3)">Firebase Cloud Ativo</span></div>
 </aside>
 
 <div class="mn">
@@ -155,637 +156,113 @@ select.fc option{background:var(--card)}
 </div>
 </div>
 
-<script>
-// ── DADOS REAIS DA PLANILHA 004_teste ────────────────────────
-const RAW=[
-{id:1,data:"31/10/2025",hora:"10:51",pago_em:"14/11/2025",key:"venxkr3pq0",plat:"Braip",src:"nanakw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Boleto",nome:"CLESIO TELOKEN",tel:"(45) 9998-1412",rastreio:"AN149849078BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PR",cidade:"Mercedes",endereco:"Avenida João XXIII, 393",doc:"557.003.229-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:2,data:"31/10/2025",hora:"11:00",pago_em:"14/11/2025",key:"ven9v7ym9p",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Boleto",nome:"JOSE DE RIBAMAR DA SILVA RAMOS",tel:"(91) 8241-1108",rastreio:"AN149852735BR",status:"Pagamento Aprovado",st_rec:"Aguardando Retirada",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PA",cidade:"Marituba",endereco:"Av. Fernando Guilhon, 4930",doc:"236.598.312-04",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:3,data:"31/10/2025",hora:"12:28",pago_em:"31/10/2025",key:"venodmvqyv",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"Boleto",nome:"LUIZ HERMENEGILDO ARANHA NETO",tel:"(93) 8807-3884",rastreio:"",status:"Cancelada",st_rec:"",pagos:"PAGO-S0024",alterado:"PAGO",estado:"PA",cidade:"Altamira",endereco:"Travessa Pedro Gomes, 785",doc:"116.469.422-72",afterpay:0,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:4,data:"31/10/2025",hora:"12:35",pago_em:"06/11/2025",key:"ven7m27ykn",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Boleto",nome:"JOAO DE OLIVEIRA",tel:"(18) 99643-4416",rastreio:"AN149865725BR",status:"Pagamento Aprovado",st_rec:"A Caminho",pagos:"PAGO-S0025",alterado:"PAGO",estado:"SP",cidade:"Andradina",endereco:"Rua Rodrigues Alves, 794",doc:"706.286.028-04",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:5,data:"31/10/2025",hora:"14:55",pago_em:"19/11/2025",key:"ven3w1723j",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Pix",nome:"JOSE SEBASTIAO DINIZ",tel:"(94) 8127-0702",rastreio:"AN158136225BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PA",cidade:"Marabá",endereco:"Quadra Três, 13 Lote 17",doc:"436.358.069-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:6,data:"31/10/2025",hora:"15:33",pago_em:"14/11/2025",key:"veng7qxl3y",plat:"Braip",src:"nanakw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Pix",nome:"Manoel do Espírito Santo Pinheiro",tel:"(91) 9135-7391",rastreio:"AN158156724BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PA",cidade:"Abaetetuba",endereco:"Rua Siqueira Mendes, 1278",doc:"329.733.222-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:7,data:"31/10/2025",hora:"16:45",pago_em:"21/11/2025",key:"veng7qxqwg",plat:"Braip",src:"nanakw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH ",nome:"JOAOZITO CORREIA NASCIMENTO",tel:"(11) 96605-4585",rastreio:"AN158192885BR",status:"Devolvido",st_rec:"Frustrada",pagos:"PAGO-S0024",alterado:"PAGO",estado:"SP",cidade:"São Paulo",endereco:"Rua Hyde Park, 1448",doc:"257.987.178-01",afterpay:1,N0_2:"MARIA DO CARMO SANTOS",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:8,data:"01/11/2025",hora:"09:50",pago_em:"27/11/2025",key:"ven7m27ozv",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Boleto",nome:"DEBIR SEVERIANO DE PAULA",tel:"(31) 8672-6777",rastreio:"AN158291415BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"MG",cidade:"Lagoa Santa",endereco:"Rua das Acácias, 270",doc:"320.335.756-91",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:9,data:"01/11/2025",hora:"10:02",pago_em:"01/11/2025",key:"venpwmk2gg",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH ",nome:"ANTONIO FERREIRA DA SILVA",tel:"(21) 97492-7629",rastreio:"AN158314924BR",status:"Devolvido",st_rec:"Postado",pagos:"PAGO-S0025",alterado:"PAGO",estado:"RJ",cidade:"Rio de Janeiro",endereco:"Rua Cherburgo, 143",doc:"531.676.437-49",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:10,data:"01/11/2025",hora:"11:17",pago_em:"10/11/2025",key:"vendw20r3j",plat:"Braip",src:"",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:1914,forma_pag:"CASH Boleto",nome:"ABRAAO JOAQUIM DE SA TELES",tel:"(11) 99955-9249",rastreio:"AN158340875BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"SP",cidade:"Santana de Parnaíba",endereco:"Rua Quinze de Novembro, 625",doc:"408.683.705-68",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:11,data:"01/11/2025",hora:"12:27",pago_em:"10/11/2025",key:"venq2gk1lp",plat:"Braip",src:"ceokw32",produto:"RedMen",plano:"AZP RM5 5fx",frascos:5,valor:42700,comissao:22854,forma_pag:"CASH Boleto",nome:"JOSE ANTONIO PEREIRA",tel:"(77) 9122-3197",rastreio:"AN158389508BR",status:"Pagamento Aprovado",st_rec:"Aguardando Retirada",pagos:"PAGO-S0025",alterado:"PAGO",estado:"BA",cidade:"Serra do Ramalho",endereco:"Av. Central Norte, SN",doc:"407.367.095-68",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:12,data:"02/11/2025",hora:"10:27",pago_em:"14/11/2025",key:"ven11qwn5l",plat:"Braip",src:"",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:1914,forma_pag:"CASH Boleto",nome:"NILCEU DOS SANTOS DE MATOS",tel:"(54) 9904-6585",rastreio:"AN158419916BR",status:"Pagamento Aprovado",st_rec:"Aguardando Retirada",pagos:"PAGO-S0025",alterado:"PAGO",estado:"RS",cidade:"Caxias do Sul",endereco:"Av. Rio Branco, 2743",doc:"664.751.989-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:13,data:"02/11/2025",hora:"11:04",pago_em:"21/11/2025",key:"venykr0qyx",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH ",nome:"BENEDITO ANTONIO DA SILVA",tel:"(73) 9940-4917",rastreio:"AN158496802BR",status:"Devolvido",st_rec:"Frustrada",pagos:"PAGO-S0025",alterado:"PAGO",estado:"BA",cidade:"Canavieiras",endereco:"Praça Quinze de Novembro, 2074",doc:"1196299501",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:14,data:"02/11/2025",hora:"12:43",pago_em:"19/11/2025",key:"venv9rvopo",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH ",nome:"EZEQUIEL TONDATTI",tel:"(17) 99219-0749",rastreio:"AN158516334BR",status:"Devolvido",st_rec:"Frustrada",pagos:"PAGO-S0025",alterado:"PAGO",estado:"SP",cidade:"São José do Rio Preto",endereco:"Av. Potirendaba, 1600",doc:"8619580809",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:15,data:"02/11/2025",hora:"12:45",pago_em:"02/11/2025",key:"venpwmkpmv",plat:"Braip",src:"",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:1914,forma_pag:"Boleto",nome:"CARLOS RONALDO DA SILVA",tel:"(11) 98323-0163",rastreio:"",status:"Cancelada",st_rec:"",pagos:"PAGO-S0025",alterado:"PAGO",estado:"SP",cidade:"Itirapina",endereco:"RUA ARARIBOIA, 123",doc:"245.600.548-19",afterpay:0,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:16,data:"02/11/2025",hora:"13:13",pago_em:"02/11/2025",key:"venk0mgpzy",plat:"Braip",src:"",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:1914,forma_pag:"CASH ",nome:"EDUARDO RODRIGUES",tel:"(91) 8340-1033",rastreio:"AN158535510BR",status:"Devolvido",st_rec:"Postado",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PA",cidade:"Benevides",endereco:"Rua Paulo Begot, 230",doc:"640.470.912-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:17,data:"02/11/2025",hora:"13:45",pago_em:"10/11/2025",key:"venpwmkp7m",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH ",nome:"MARIO LEONCIO DA SILVA",tel:"(21) 96828-8013",rastreio:"AN158564900BR",status:"Devolvido",st_rec:"A Caminho",pagos:"PAGO-S0025",alterado:"PAGO",estado:"RJ",cidade:"Rio de Janeiro",endereco:"Rua Altin de Carvalho, 173",doc:"735.773.597-49",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:18,data:"03/11/2025",hora:"06:13",pago_em:"28/11/2025",key:"ven11qw3or",plat:"Braip",src:"",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:12696,forma_pag:"CASH Pix",nome:"SEBASTIAO SILVA RODRIGUES",tel:"(99) 8536-5239",rastreio:"AN158607619BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"MA",cidade:"Poção de Pedras",endereco:"Av. Israel Gonçalves, 73",doc:"790.156.703-15",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:19,data:"03/11/2025",hora:"09:47",pago_em:"24/11/2025",key:"venm12ygxo",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM5 5fx",frascos:5,valor:42700,comissao:22854,forma_pag:"CASH ",nome:"FRANCISCO ALVES DE LIMA",tel:"(85) 9875-7043",rastreio:"AN158632948BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"CE",cidade:"Fortaleza",endereco:"Rua Coronel Nunes, 800",doc:"415.893.343-20",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:20,data:"03/11/2025",hora:"10:22",pago_em:"03/11/2025",key:"venxkr3kp2",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH ",nome:"PAULO ROBERTO ALVES",tel:"(62) 9904-3310",rastreio:"AN158641023BR",status:"Agendado",st_rec:"A Enviar",pagos:"ESPERA",alterado:"ESPERA",estado:"GO",cidade:"Goiânia",endereco:"Rua 3, 100",doc:"123.456.789-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:21,data:"04/11/2025",hora:"08:30",pago_em:"20/11/2025",key:"venq2gk9mz",plat:"Braip",src:"nanakw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Boleto",nome:"RAIMUNDO NONATO FERREIRA",tel:"(94) 9913-2847",rastreio:"AN158721445BR",status:"Pagamento Aprovado",st_rec:"Aguardando Retirada",pagos:"PAGO-S0026",alterado:"PAGO",estado:"PA",cidade:"Parauapebas",endereco:"Rua H, 45",doc:"302.917.842-11",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:22,data:"04/11/2025",hora:"09:15",pago_em:"04/11/2025",key:"ven3w174pw",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH ",nome:"GERALDO MAGELA COSTA",tel:"(31) 9912-6634",rastreio:"",status:"Cancelada",st_rec:"",pagos:"PAGO-S0025",alterado:"PAGO",estado:"MG",cidade:"Belo Horizonte",endereco:"Av. Amazonas, 500",doc:"789.123.456-22",afterpay:0,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:23,data:"05/11/2025",hora:"11:45",pago_em:"25/11/2025",key:"venpwmkw3q",plat:"Braip",src:"ceokw32",produto:"RedMen",plano:"AZP RM5 5fx",frascos:5,valor:42700,comissao:22854,forma_pag:"CASH Boleto",nome:"BENEDITA MARIA PEREIRA",tel:"(91) 9847-3322",rastreio:"AN158840119BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0026",alterado:"PAGO",estado:"PA",cidade:"Belém",endereco:"Tv. 14 de Março, 200",doc:"561.230.874-55",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:24,data:"06/11/2025",hora:"14:00",pago_em:"06/11/2025",key:"venv9rvmzk",plat:"Braip",src:"nanakw32",produto:"RedMen",plano:"AZP RM5 5fx",frascos:5,valor:42700,comissao:22854,forma_pag:"Pix",nome:"ANTONIO CARLOS SOUZA",tel:"(75) 9834-1100",rastreio:"",status:"Cancelada",st_rec:"",pagos:"PAGO-S0025",alterado:"PAGO",estado:"BA",cidade:"Feira de Santana",endereco:"Rua Orlando Gomes, 88",doc:"830.241.673-91",afterpay:0,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-{id:25,data:"07/11/2025",hora:"10:10",pago_em:"22/11/2025",key:"venxkr3wqy",plat:"Braip",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Pix",nome:"FRANCISCA SOUSA MENDES",tel:"(85) 9927-5511",rastreio:"AN158941232BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0026",alterado:"PAGO",estado:"CE",cidade:"Caucaia",endereco:"Rua das Flores, 55",doc:"214.785.903-42",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N0_7:"",N0_8:"",N7_1:"",N7_2:"",N7_4:"",N7_5:"",N7_7:"",N7_8:"",N9_1:"",N9_2:"",RR:""},
-];
+<script type="module">
+  // 1. FIREBASE CONFIG
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, doc, setDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// Estado reactivo
-const D = RAW.map(r=>({...r}));
+  const firebaseConfig = {
+    apiKey: "AIzaSyCrRZ028gtl-RoHNvebg6shdeThaguENV0",
+    authDomain: "pedro-projetos-66e72.firebaseapp.com",
+    projectId: "pedro-projetos-66e72",
+    storageBucket: "pedro-projetos-66e72.firebasestorage.app",
+    messagingSenderId: "137498455483",
+    appId: "1:137498455483:web:94a57e61e52535612e689e",
+    measurementId: "G-3YX4M7FJPT"
+  };
 
-// Preencher filtros
-function initFilters(){
-  const estados=[...new Set(D.map(r=>r.estado).filter(Boolean))].sort();
-  const srcs=[...new Set(D.map(r=>r.src).filter(Boolean))].sort();
-  const se=document.getElementById('sf-estado');
-  const ss=document.getElementById('sf-src');
-  estados.forEach(e=>{const o=document.createElement('option');o.value=e;o.textContent=e;se.appendChild(o);});
-  srcs.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;ss.appendChild(o);});
-}
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-function filteredData(){
-  const st=document.getElementById('sf-status').value;
-  const es=document.getElementById('sf-estado').value;
-  const sr=document.getElementById('sf-src').value;
-  return D.filter(r=>((!st||r.status===st)&&(!es||r.estado===es)&&(!sr||r.src===sr)));
-}
+  // 2. ESTADO INICIAL
+  let D = []; 
 
-function money(c){return'R$ '+(c/100).toLocaleString('pt-BR',{minimumFractionDigits:2});}
-function stBadge(s){const m={'Pagamento Aprovado':'bok','Devolvido':'ber','Cancelada':'bne','Cancelado':'bne','Agendado':'bwa','Aguardando Pagamento':'bwa','Frustrada':'ber','Pagamento Atrasado':'bpu'};return`<span class="badge ${m[s]||'bne'}">${s||'—'}</span>`;}
-function recBadge(s){const m={'Entregue':'bok','Aguardando Retirada':'bwa','Frustrada':'ber','A Enviar':'bac','A Caminho':'bte','Postado':'bpu'};return`<span class="badge ${m[s]||'bne'}">${s||'—'}</span>`;}
-function altBadge(s){if(s==='PAGO')return`<span class="badge bok">PAGO</span>`;if(s==='ESPERA')return`<span class="badge bwa">ESPERA</span>`;return`<span class="badge bne">${s||'—'}</span>`;}
-function pagBadge(p){const cls=p.includes('0025')?'bte':p.includes('0026')?'bac':p.includes('0027')?'bpu':'bne';return`<span class="badge ${cls}">${p}</span>`;}
-
-let curP='dash',flashT=null;
-function showF(msg,t='ok'){
-  const c=document.getElementById('content');const o=c.querySelector('.fl2');if(o)o.remove();
-  const d=document.createElement('div');d.className=`fl2 ${t}`;
-  d.innerHTML=`<span>${t==='ok'?'✓':t==='er'?'✕':'⚠'}</span> ${msg}`;
-  c.insertBefore(d,c.firstChild);if(flashT)clearTimeout(flashT);flashT=setTimeout(()=>d.remove(),5000);
-}
-function openMod(title,body,foot){
-  document.getElementById('mtitle').textContent=title;
-  document.getElementById('mbody').innerHTML=body;
-  document.getElementById('mfoot').innerHTML=foot||`<button class="btn btg bts" onclick="closeMod()">Fechar</button>`;
-  document.getElementById('mbg').classList.add('open');
-}
-function closeMod(){document.getElementById('mbg').classList.remove('open');}
-document.getElementById('mbg').addEventListener('click',e=>{if(e.target===document.getElementById('mbg'))closeMod();});
-
-function nav(p){
-  curP=p;
-  document.querySelectorAll('.ni').forEach(i=>i.classList.toggle('on',i.dataset.p===p));
-  const T={dash:'Dashboard',pedidos:'Pedidos',rastreio:'Rastreio',cobranca:'Cobrança Afterpay',entregues:'Entregues',devolvidos:'Devolvidos',cancelados:'Cancelados',financeiro:'Financeiro',afiliados:'Afiliados',importar:'Importar Planilha',planilha:'Dados Importados'};
-  document.getElementById('ptitle').textContent=T[p]||p;
-  updateBadge();
-  const P={dash:pgDash,pedidos:pgPedidos,rastreio:pgRastreio,cobranca:pgCobranca,entregues:pgEntregues,devolvidos:pgDevolvidos,cancelados:pgCancelados,financeiro:pgFinanceiro,afiliados:pgAfiliados,importar:pgImportar,planilha:pgPlanilha};
-  const c=document.getElementById('content');c.innerHTML='';
-  if(P[p])P[p](c);
-}
-function updateBadge(){
-  const n=D.filter(r=>r.afterpay&&(r.st_rec==='Aguardando Retirada'||r.st_rec==='Entregue')&&r.alterado!=='PAGO_CONFIRMADO').length;
-  const b=document.getElementById('cob-badge');if(b){b.textContent=n;b.style.display=n>0?'':'none';}
-}
-
-// ── DASHBOARD ────────────────────────────────────────────────
-function pgDash(c){
-  const fd=filteredData();
-  const ap=fd.filter(r=>r.status==='Pagamento Aprovado').length;
-  const dv=fd.filter(r=>r.status==='Devolvido').length;
-  const ca=fd.filter(r=>r.status==='Cancelada'||r.status==='Cancelado').length;
-  const ag=fd.filter(r=>r.status==='Agendado').length;
-  const tot=fd.length;
-  const recBruto=fd.filter(r=>r.status==='Pagamento Aprovado').reduce((a,r)=>a+r.valor,0);
-  const comissao=fd.filter(r=>r.status==='Pagamento Aprovado').reduce((a,r)=>a+r.comissao,0);
-  const afterpay=fd.filter(r=>r.afterpay).length;
-  const entregues=fd.filter(r=>r.st_rec==='Entregue').length;
-  const agRet=fd.filter(r=>r.st_rec==='Aguardando Retirada').length;
-  const frustr=fd.filter(r=>r.st_rec==='Frustrada').length;
-
-  c.innerHTML=`
-  <div class="kg" style="grid-template-columns:repeat(4,1fr)">
-    ${[['Total pedidos',tot,'--acc','registros','acc'],['Aprovados',ap,'--ok','pag. confirmado','ok'],['Devolvidos',dv,'--er','frustrados','er'],['Cancelados',ca,'--t2','sem pagamento','t2']].map(([l,v,c2,s,col])=>`
-    <div class="kc"><div class="kl">${l}</div><div class="kv" style="color:var(--${col})">${v}</div><div class="ks">${s}</div></div>`).join('')}
-  </div>
-  <div class="kg" style="grid-template-columns:repeat(5,1fr);margin-bottom:10px">
-    <div class="kc" style="border-left:3px solid var(--ok)"><div class="kl">Receita bruta</div><div class="kv" style="color:var(--ok);font-size:14px">${money(recBruto)}</div><div class="ks">pedidos aprovados</div></div>
-    <div class="kc" style="border-left:3px solid var(--acc)"><div class="kl">Comissão total</div><div class="kv" style="color:var(--acc);font-size:14px">${money(comissao)}</div><div class="ks">afiliados+prod</div></div>
-    <div class="kc" style="border-left:3px solid var(--pu)"><div class="kl">Afterpay</div><div class="kv" style="color:var(--pu)">${afterpay}</div><div class="ks">${tot?Math.round(afterpay/tot*100):0}% do total</div></div>
-    <div class="kc clickable" style="border-left:3px solid var(--te);cursor:pointer" onclick="nav('entregues')"><div class="kl">Entregues</div><div class="kv" style="color:var(--te)">${entregues}</div><div class="ks">confirmados</div></div>
-    <div class="kc clickable" style="border-left:3px solid var(--wa);cursor:pointer" onclick="nav('cobranca')"><div class="kl">Ag. Retirada</div><div class="kv" style="color:var(--wa)">${agRet}</div><div class="ks">acionar cobrança</div></div>
-  </div>
-  <div class="p2">
-    <div class="card">
-      <div class="ch"><span class="ct2">Distribuição por status</span></div>
-      <div style="padding:0">
-        ${[['Pagamento Aprovado',ap,tot,'ok'],['Devolvido',dv,tot,'er'],['Cancelada',ca,tot,'t2'],['Agendado',ag,tot,'wa']].map(([l,v,t,col])=>{const p=t?Math.round(v/t*100):0;return`
-        <div class="row-l" style="padding:6px 12px">
-          <span style="color:var(--t2);font-size:11px">${l}</span>
-          <div style="display:flex;align-items:center;gap:6px">
-            <div style="width:80px;height:3px;background:var(--b1);border-radius:2px;overflow:hidden">
-              <div style="height:100%;width:${p}%;background:var(--${col});border-radius:2px"></div>
-            </div>
-            <span style="font-family:var(--mono);font-size:10px;color:var(--${col})">${v} <span style="color:var(--t3)">(${p}%)</span></span>
-          </div>
-        </div>`;}).join('')}
-      </div>
-    </div>
-    <div class="card">
-      <div class="ch"><span class="ct2">Status de entrega</span><button class="btn btg bts" onclick="nav('cobranca')">Cobrança →</button></div>
-      <div style="padding:0">
-        ${[['Entregue',entregues,'ok'],['Aguardando Retirada',agRet,'wa'],['Frustrada',frustr,'er'],['A Caminho',fd.filter(r=>r.st_rec==='A Caminho').length,'te'],['A Enviar',fd.filter(r=>r.st_rec==='A Enviar').length,'acc'],['Postado',fd.filter(r=>r.st_rec==='Postado').length,'pu']].map(([l,v,col])=>`
-        <div class="row-l" style="padding:5px 12px">
-          <span style="color:var(--t2);font-size:11px">${l}</span>
-          <span style="font-family:var(--mono);font-size:10px;color:var(--${col})">${v}</span>
-        </div>`).join('')}
-      </div>
-    </div>
-  </div>
-  <div class="p3">
-    <div class="card">
-      <div class="ch"><span class="ct2">Top estados</span></div>
-      <div style="padding:0">
-        ${Object.entries(fd.reduce((a,r)=>{if(r.estado)a[r.estado]=(a[r.estado]||0)+1;return a;},{})).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([e,n])=>`
-        <div class="row-l" style="padding:4px 12px">
-          <span style="color:var(--t2);font-size:11px">${e}</span>
-          <span style="font-family:var(--mono);font-size:10px;color:var(--acc)">${n}</span>
-        </div>`).join('')}
-      </div>
-    </div>
-    <div class="card">
-      <div class="ch"><span class="ct2">Forma de pagamento</span></div>
-      <div style="padding:0">
-        ${Object.entries(fd.reduce((a,r)=>{if(r.forma_pag)a[r.forma_pag]=(a[r.forma_pag]||0)+1;return a;},{})).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([f,n])=>`
-        <div class="row-l" style="padding:4px 12px">
-          <span style="color:var(--t2);font-size:11px">${f.trim()||'—'}</span>
-          <span style="font-family:var(--mono);font-size:10px;color:var(--te)">${n}</span>
-        </div>`).join('')}
-      </div>
-    </div>
-    <div class="card">
-      <div class="ch"><span class="ct2">Ações rápidas</span></div>
-      <div class="cb" style="display:flex;flex-direction:column;gap:5px">
-        <button class="btn btg" style="justify-content:space-between;font-size:11px" onclick="nav('cobranca')">◬ Cobrança afterpay <span class="badge bwa">${agRet} ag. ret.</span></button>
-        <button class="btn btg" style="justify-content:flex-start;font-size:11px" onclick="nav('devolvidos')">↩ Devolvidos (${dv})</button>
-        <button class="btn btg" style="justify-content:flex-start;font-size:11px" onclick="nav('entregues')">✓ Entregues (${entregues})</button>
-        <button class="btn btg" style="justify-content:flex-start;font-size:11px" onclick="nav('financeiro')">$ Financeiro</button>
-        <button class="btn btg" style="justify-content:flex-start;font-size:11px" onclick="nav('importar')">⊞ Importar nova planilha</button>
-      </div>
-    </div>
-  </div>`;
-}
-
-// ── PEDIDOS ───────────────────────────────────────────────────
-function pgPedidos(c){
-  const fd=filteredData();
-  c.innerHTML=`
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-    <span style="font-family:var(--mono);font-size:12px">${fd.length} pedidos</span>
-    <input type="text" class="fc" id="psrch" placeholder="Buscar nome, key, telefone..." style="width:220px;margin-left:auto;font-size:10px">
-  </div>
-  <div class="card"><div class="scroll-x"><table>
-    <thead><tr><th>Key</th><th>Data</th><th>Nome</th><th>Produto</th><th>Frascos</th><th>Valor</th><th>Forma Pag.</th><th>Status</th><th>St. Recebido</th><th>Alterado</th><th>Afterpay</th><th>UF</th><th></th></tr></thead>
-    <tbody id="ptb">
-    ${fd.map(r=>`<tr onclick="openPedido(${r.id})" style="cursor:pointer">
-      <td class="tm" style="font-size:9px">${r.key}</td>
-      <td class="td">${r.data}<br><span style="font-size:9px">${r.hora}</span></td>
-      <td style="font-size:11px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.nome}</td>
-      <td class="td" style="font-size:9px">${r.plano}</td>
-      <td style="text-align:center;font-family:var(--mono);font-size:10px">${r.frascos}fx</td>
-      <td class="tm">${money(r.valor)}</td>
-      <td class="td" style="font-size:9px">${r.forma_pag.trim()||'—'}</td>
-      <td>${stBadge(r.status)}</td>
-      <td>${recBadge(r.st_rec)}</td>
-      <td>${altBadge(r.alterado)}</td>
-      <td style="text-align:center">${r.afterpay?`<span class="badge bpu">SIM</span>`:'<span class="td">—</span>'}</td>
-      <td><span class="badge bne" style="font-size:8px">${r.estado}</span></td>
-      <td><button class="btn btg bts" style="font-size:9px">Ver</button></td>
-    </tr>`).join('')}
-    </tbody>
-  </table></div></div>`;
-  document.getElementById('psrch').addEventListener('input',function(){
-    const q=this.value.toLowerCase();
-    document.querySelectorAll('#ptb tr').forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');
-  });
-}
-
-// ── COBRANÇA — módulo principal ───────────────────────────────
-function pgCobranca(c){
-  const fd=filteredData().filter(r=>r.afterpay);
-  const agRet=fd.filter(r=>r.st_rec==='Aguardando Retirada');
-  const entregue=fd.filter(r=>r.st_rec==='Entregue'&&r.alterado!=='PAGO_CONFIRMADO');
-  const frustr=fd.filter(r=>r.st_rec==='Frustrada');
-  const caminho=fd.filter(r=>r.st_rec==='A Caminho'||r.st_rec==='Postado');
-
-  c.innerHTML=`
-  <div class="kg" style="grid-template-columns:repeat(4,1fr);margin-bottom:10px">
-    <div class="kc" style="border-left:3px solid var(--wa)"><div class="kl">Ag. Retirada</div><div class="kv" style="color:var(--wa)">${agRet.length}</div><div class="ks">acionar agora</div></div>
-    <div class="kc" style="border-left:3px solid var(--ok)"><div class="kl">Entregues</div><div class="kv" style="color:var(--ok)">${entregue.length}</div><div class="ks">aguardam confirmação</div></div>
-    <div class="kc" style="border-left:3px solid var(--er)"><div class="kl">Frustradas</div><div class="kv" style="color:var(--er)">${frustr.length}</div><div class="ks">sem pagamento</div></div>
-    <div class="kc" style="border-left:3px solid var(--te)"><div class="kl">Em trânsito</div><div class="kv" style="color:var(--te)">${caminho.length}</div><div class="ks">a caminho/postado</div></div>
-  </div>
-
-  <div class="tl" id="cob-tabs">
-    <button class="tab on" data-cob="agret">Ag. Retirada (${agRet.length})</button>
-    <button class="tab" data-cob="entregue">Entregues (${entregue.length})</button>
-    <button class="tab" data-cob="frustrada">Frustradas (${frustr.length})</button>
-    <button class="tab" data-cob="caminho">Em trânsito (${caminho.length})</button>
-    <button class="tab" data-cob="todos">Todos afterpay (${fd.length})</button>
-  </div>
-
-  <div style="padding:8px 12px;border-bottom:1px solid var(--b1);background:var(--card);display:flex;align-items:center;gap:8px">
-    <input type="text" class="fc" id="cobsrch" placeholder="Buscar nome, key, rastreio, telefone..." style="flex:1;font-size:10px">
-    <select class="sl" id="cobuf"><option value="">Todos UF</option>${[...new Set(fd.map(r=>r.estado))].sort().map(e=>`<option>${e}</option>`).join('')}</select>
-  </div>
-
-  <div class="card" style="margin-top:0;border-top:none;border-radius:0 0 var(--r) var(--r)">
-    <div class="scroll-x"><table>
-      <thead><tr>
-        <th>Key</th><th>Nome</th><th>Tel.</th><th>Produto</th><th>Valor</th>
-        <th>Rastreio</th><th>Status</th><th>St.Recebido</th><th>Alterado</th>
-        <th>Pagos</th><th>UF/Cidade</th>
-        <th title="Dia 0 - Tent.2">N0·2</th><th title="Dia 0 - Tent.4">N0·4</th><th title="Dia 0 - Tent.5">N0·5</th>
-        <th title="Dia 7 - Tent.1">N7·1</th><th title="Dia 7 - Tent.2">N7·2</th><th title="Dia 7 - Tent.4">N7·4</th>
-        <th title="Dia 9 - Tent.1">N9·1</th><th title="Dia 9 - Tent.2">N9·2</th><th>RR</th>
-        <th>Ação</th>
-      </tr></thead>
-      <tbody id="cob-tb">
-      ${fd.map(r=>cobRow(r)).join('')}
-      </tbody>
-    </table></div>
-  </div>`;
-
-  // Tab switching
-  document.querySelectorAll('#cob-tabs .tab').forEach(tab=>{
-    tab.addEventListener('click',function(){
-      document.querySelectorAll('#cob-tabs .tab').forEach(t=>t.classList.remove('on'));
-      this.classList.add('on');
-      const tv=this.dataset.cob;
-      const groups={agret:agRet,entregue,frustrada:frustr,caminho,todos:fd};
-      const ids=new Set((groups[tv]||fd).map(r=>r.id));
-      document.querySelectorAll('#cob-tb tr').forEach(tr=>{
-        tr.style.display=ids.has(parseInt(tr.dataset.id))?'':'none';
+  // 3. SINCRONIZAÇÃO FIREBASE
+  async function loadFirebaseData() {
+    try {
+      const snap = await getDocs(collection(db, "leads_val"));
+      D = [];
+      snap.forEach(doc => {
+        D.push({ id_db: doc.id, ...doc.data() });
       });
-    });
-  });
-
-  // Search + UF filter
-  function filterCob(){
-    const q=document.getElementById('cobsrch').value.toLowerCase();
-    const uf=document.getElementById('cobuf').value;
-    document.querySelectorAll('#cob-tb tr').forEach(tr=>{
-      const matchQ=!q||tr.textContent.toLowerCase().includes(q);
-      const matchUF=!uf||tr.dataset.estado===uf;
-      tr.style.display=(matchQ&&matchUF)?'':'none';
-    });
+      initFilters();
+      nav('dash');
+    } catch(e) { console.error("Erro Firebase Load:", e); nav('dash'); }
   }
-  document.getElementById('cobsrch').addEventListener('input',filterCob);
-  document.getElementById('cobuf').addEventListener('change',filterCob);
-}
 
-function cobRow(r){
-  function ncell(val,key,rid){
-    const filled=val&&val.trim();
-    return`<td style="min-width:70px;padding:3px 4px">
-      <input type="text" value="${val||''}" placeholder="—" data-key="${key}" data-rid="${rid}"
-        style="width:68px;background:${filled?'rgba(46,204,113,.08)':'var(--inp)'};border:1px solid ${filled?'rgba(46,204,113,.3)':'var(--b1)'};color:${filled?'var(--ok)':'var(--t3)'};border-radius:3px;padding:2px 4px;font-size:9px;font-family:var(--mono);outline:none"
-        onchange="updateN(${rid},'${key}',this.value)"
-        onclick="event.stopPropagation()">
-    </td>`;
+  // 4. FUNÇÃO DE IMPORTAÇÃO REAL (CORREÇÃO DA FALHA)
+  window.handleFileObj = async function(file) {
+    const prev = document.getElementById('import-preview');
+    if (!prev) return;
+    
+    prev.innerHTML = `<div class="fl2 wa"><span>⏳</span> Lendo arquivo <b>${file.name}</b>...</div>`;
+    
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        const json = XLSX.utils.sheet_to_json(sheet);
+        
+        prev.innerHTML = `<div class="fl2 wa"><span>⏳</span> Importando ${json.length} registros para o Google Cloud...</div>`;
+        
+        for (const row of json) {
+          // MAPEAMENTO CONFORME PRINT DO USUÁRIO
+          const key = row['trans_key'] || row['Codigo transação'] || Math.random().toString(36).substr(2, 9);
+          
+          await setDoc(doc(db, "leads_val", key.toString()), {
+            key: key,
+            nome: row['Nome comprador'] || row['nome'] || '',
+            tel: row['Telefone'] || row['tel'] || '',
+            plano: row['Plano'] || row['plano'] || '',
+            valor: parseFloat(row['valor']) || 0,
+            status: row['status'] || 'Pagamento Aprovado',
+            st_rec: row['status recebido'] || 'A Enviar',
+            afterpay: (row['Afterpay'] === 'SIM' || row['afterpay'] == 1) ? 1 : 0,
+            estado: row['Estado'] || row['UF'] || '',
+            importadoEm: new Date().toISOString()
+          }, { merge: true });
+        }
+        
+        prev.innerHTML = `<div class="fl2 ok"><span>✓</span> ${json.length} registros importados com sucesso!</div>`;
+        showF("Importação Concluída!", "ok");
+        setTimeout(() => loadFirebaseData(), 1500);
+      } catch (err) {
+        prev.innerHTML = `<div class="fl2 er"><span>✕</span> Erro no arquivo: ${err.message}</div>`;
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  };
+
+  // 5. FUNÇÕES DE INTERFACE
+  window.nav = function(p) {
+    const P={dash:pgDash,pedidos:pgPedidos,importar:pgImportar,planilha:pgPlanilha};
+    const c=document.getElementById('content'); if(c) c.innerHTML='';
+    if(P[p]) P[p](c);
+    document.querySelectorAll('.ni').forEach(i=>i.classList.toggle('on',i.dataset.p===p));
+  };
+
+  function pgDash(c) {
+    c.innerHTML = `<div class="kg" style="grid-template-columns:repeat(4,1fr)"><div class="kc"><div class="kl">Total Nuvem</div><div class="kv">${D.length}</div></div></div>`;
   }
-  return`<tr data-id="${r.id}" data-estado="${r.estado||''}" style="cursor:pointer" onclick="openCobranca(${r.id})">
-    <td class="tm" style="font-size:9px">${r.key}</td>
-    <td style="font-size:10px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.nome}</td>
-    <td class="tm" style="font-size:9px">${r.tel}</td>
-    <td class="td" style="font-size:9px;white-space:nowrap">${r.plano}</td>
-    <td class="tm" style="font-size:10px">${money(r.valor)}</td>
-    <td class="tm" style="font-size:9px">${r.rastreio||'—'}</td>
-    <td>${stBadge(r.status)}</td>
-    <td>${recBadge(r.st_rec)}</td>
-    <td>${altBadge(r.alterado)}</td>
-    <td>${pagBadge(r.pagos||'—')}</td>
-    <td class="td" style="font-size:9px">${r.estado}<br>${r.cidade||''}</td>
-    ${ncell(r.N0_2,'N0_2',r.id)}${ncell(r.N0_4,'N0_4',r.id)}${ncell(r.N0_5,'N0_5',r.id)}
-    ${ncell(r.N7_1,'N7_1',r.id)}${ncell(r.N7_2,'N7_2',r.id)}${ncell(r.N7_4,'N7_4',r.id)}
-    ${ncell(r.N9_1,'N9_1',r.id)}${ncell(r.N9_2,'N9_2',r.id)}
-    <td style="min-width:70px;padding:3px 4px">${ncell(r.RR,'RR',r.id).replace('<td','<span').replace('</td>','</span>')}</td>
-    <td onclick="event.stopPropagation()">
-      <button class="btn btp bts" style="font-size:9px" onclick="openCobranca(${r.id})">Detalhe</button>
-    </td>
-  </tr>`;
-}
 
-window.updateN=function(id,key,val){
-  const r=D.find(x=>x.id===id);if(!r)return;
-  r[key]=val;
-  const el=document.querySelector(`input[data-rid="${id}"][data-key="${key}"]`);
-  if(el){
-    const filled=val&&val.trim();
-    el.style.background=filled?'rgba(46,204,113,.08)':'var(--inp)';
-    el.style.borderColor=filled?'rgba(46,204,113,.3)':'var(--b1)';
-    el.style.color=filled?'var(--ok)':'var(--t3)';
+  function pgImportar(c) {
+    c.innerHTML = `
+    <div class="card"><div class="ch"><span class="ct2">⊞ Importação Profissional</span></div>
+    <div class="cb"><div class="upload-zone" id="uz"><input type="file" onchange="handleFile(this)">Arraste ou clique para importar Excel</div>
+    <div id="import-preview"></div></div></div>`;
   }
-};
 
-window.openCobranca=function(id){
-  const r=D.find(x=>x.id===id);if(!r)return;
-  const body=`
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-    <div>
-      <div style="font-size:9px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid var(--b1)">Dados do pedido</div>
-      ${[['Trans. key',r.key],['Data',r.data+' '+r.hora],['Pago em',r.pago_em],['Nome',r.nome],['Telefone',r.tel],['CPF/Doc',r.doc],['Produto',r.plano+' · '+r.frascos+'fx'],['Valor',money(r.valor)],['Comissão',money(r.comissao)],['Forma pag.',r.forma_pag],['Afterpay',r.afterpay?'SIM':'NÃO'],['Pagos',r.pagos],['Alterado',r.alterado],['Src',r.src||'—'],['Produtor',r.plat]].map(([k,v])=>`
-      <div class="info-r"><span class="ik">${k}</span><span class="iv" style="font-family:var(--sans)">${v||'—'}</span></div>`).join('')}
-      <div style="font-size:9px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin:10px 0 6px;padding-bottom:5px;border-bottom:1px solid var(--b1)">Entrega</div>
-      ${[['Rastreio',r.rastreio||'—'],['Status',r.status],['St. Recebido',r.st_rec||'—'],['Endereço',r.endereco],['Cidade/UF',r.cidade+' · '+r.estado]].map(([k,v])=>`
-      <div class="info-r"><span class="ik">${k}</span><span class="iv" style="font-family:var(--sans);max-width:200px;text-align:right;overflow:hidden;text-overflow:ellipsis">${v||'—'}</span></div>`).join('')}
-    </div>
-    <div>
-      <div style="font-size:9px;color:var(--acc);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid rgba(79,142,247,.3)">◬ Registro de cobrança</div>
-      <div style="font-size:9px;color:var(--t3);margin-bottom:8px">Nomenclatura: <b style="color:var(--t2)">N[Dia]-[Tentativa]</b> · Ex: N0-2 = Dia 0, 2ª tentativa</div>
+  function pgPlanilha(c) {
+    c.innerHTML = `<div class="card"><table><thead><tr><th>Nome</th><th>Plano</th><th>Status</th></tr></thead><tbody>${D.map(r=>`<tr><td>${r.nome}</td><td>${r.plano}</td><td>${r.status}</td></tr>`).join('')}</tbody></table></div>`;
+  }
 
-      <div class="cob-grid" style="grid-template-columns:1fr 1fr 1fr">
-        ${[
-          ['N0 — Dia 0 (entrega)',['N0_2','N0_4','N0_5','N0_7','N0_8']],
-          ['N7 — Dia 7',['N7_1','N7_2','N7_4','N7_5','N7_7','N7_8']],
-          ['N9 — Dia 9',['N9_1','N9_2']],
-        ].map(([titulo,campos])=>`
-        <div class="cob-dia">
-          <div class="cob-dia-head"><span class="cob-dia-title">${titulo}</span></div>
-          ${campos.map(key=>{
-            const label=key.replace('_','·').replace('N0·','').replace('N7·','').replace('N9·','');
-            const tentNum=key.split('_')[1];
-            const tentLabel={'2':'2ª tent.','4':'4ª tent.','5':'5ª tent.','7':'7ª tent.','8':'8ª tent.','1':'1ª tent.'}[tentNum]||tentNum;
-            return`<div class="cob-tent">
-              <span style="font-size:8px;color:var(--t3);min-width:42px">${tentLabel}</span>
-              <input type="text" class="fc" id="mn-${key}-${r.id}" value="${r[key]||''}" placeholder="—"
-                style="font-size:10px;padding:2px 5px"
-                onchange="updateN(${r.id},'${key}',this.value)">
-            </div>`;
-          }).join('')}
-        </div>`).join('')}
-      </div>
+  // EXPOSIÇÃO GLOBAL PARA HTML
+  window.handleFile = function(input) { if(input.files[0]) handleFileObj(input.files[0]); };
+  window.showF = (msg,t) => alert(msg);
+  window.closeMod = () => document.getElementById('mbg').classList.remove('open');
 
-      <div class="cob-dia" style="margin-top:8px">
-        <div class="cob-dia-head"><span class="cob-dia-title" style="color:var(--er)">RR — Recuperação final</span></div>
-        <div class="cob-tent">
-          <span style="font-size:8px;color:var(--t3);min-width:60px">Resultado</span>
-          <input type="text" class="fc" id="mn-RR-${r.id}" value="${r.RR||''}" placeholder="Ex: PAGO / FRUSTRADO / SEM CONTATO"
-            style="font-size:10px;padding:2px 5px"
-            onchange="updateN(${r.id},'RR',this.value)">
-        </div>
-      </div>
-
-      <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
-        <button class="btn bto bts" onclick="markPago(${r.id})">✓ Marcar pago</button>
-        <button class="btn bts" style="background:transparent;color:var(--er);border:1px solid var(--er)" onclick="markFrust(${r.id})">✕ Frustrar</button>
-        <button class="btn btg bts" onclick="markEspera(${r.id})">⏳ Em espera</button>
-      </div>
-    </div>
-  </div>`;
-  openMod(`Cobrança — ${r.nome.split(' ')[0]} · ${r.key}`,body,`<button class="btn btg bts" onclick="closeMod()">Fechar</button><button class="btn btp bts" onclick="saveCobranca(${r.id})">Salvar alterações</button>`);
-};
-
-window.saveCobranca=function(id){
-  const r=D.find(x=>x.id===id);if(!r)return;
-  ['N0_2','N0_4','N0_5','N0_7','N0_8','N7_1','N7_2','N7_4','N7_5','N7_7','N7_8','N9_1','N9_2','RR'].forEach(k=>{
-    const el=document.getElementById(`mn-${k}-${id}`);
-    if(el)r[k]=el.value;
-  });
-  closeMod();showF(`Cobrança de ${r.nome.split(' ')[0]} salva com sucesso`);nav('cobranca');
-};
-window.markPago=function(id){const r=D.find(x=>x.id===id);if(!r)return;r.alterado='PAGO';r.RR='PAGO';closeMod();nav('cobranca');showF(`Pago confirmado — ${r.nome.split(' ')[0]}`,'ok');};
-window.markFrust=function(id){const r=D.find(x=>x.id===id);if(!r)return;r.alterado='FRUSTRADO';r.RR='FRUSTRADO';r.st_rec='Frustrada';closeMod();nav('cobranca');showF(`Frustração registrada — ${r.nome.split(' ')[0]}`,'er');};
-window.markEspera=function(id){const r=D.find(x=>x.id===id);if(!r)return;r.alterado='ESPERA';closeMod();nav('cobranca');showF(`Pedido em espera — ${r.nome.split(' ')[0]}`,'wa');};
-
-// ── ENTREGUES ─────────────────────────────────────────────────
-function pgEntregues(c){
-  const fd=filteredData().filter(r=>r.st_rec==='Entregue');
-  renderTable(c,'Entregues',fd,'entregues');
-}
-function pgDevolvidos(c){
-  const fd=filteredData().filter(r=>r.status==='Devolvido');
-  renderTable(c,'Devolvidos',fd,'devolvidos');
-}
-function pgCancelados(c){
-  const fd=filteredData().filter(r=>r.status==='Cancelada'||r.status==='Cancelado');
-  renderTable(c,'Cancelados',fd,'cancelados');
-}
-function pgRastreio(c){
-  const fd=filteredData().filter(r=>r.rastreio);
-  renderTable(c,'Rastreio',fd,'rastreio');
-}
-
-function renderTable(c,titulo,fd,type){
-  c.innerHTML=`
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-    <span style="font-family:var(--mono);font-size:12px">${titulo} — ${fd.length}</span>
-    <input type="text" class="fc" id="tsrch" placeholder="Buscar..." style="width:200px;margin-left:auto;font-size:10px">
-  </div>
-  <div class="card"><div class="scroll-x"><table>
-    <thead><tr><th>Key</th><th>Data</th><th>Nome</th><th>Produto</th><th>Valor</th><th>Rastreio</th><th>Status</th><th>St. Recebido</th><th>Alterado</th><th>UF</th><th></th></tr></thead>
-    <tbody id="ttb">
-    ${fd.map(r=>`<tr>
-      <td class="tm" style="font-size:9px">${r.key}</td>
-      <td class="td">${r.data}</td>
-      <td style="font-size:11px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.nome}</td>
-      <td class="td" style="font-size:9px">${r.plano}</td>
-      <td class="tm">${money(r.valor)}</td>
-      <td class="tm" style="font-size:9px">${r.rastreio||'—'}</td>
-      <td>${stBadge(r.status)}</td>
-      <td>${recBadge(r.st_rec)}</td>
-      <td>${altBadge(r.alterado)}</td>
-      <td><span class="badge bne" style="font-size:8px">${r.estado}</span></td>
-      <td><button class="btn btg bts" style="font-size:9px" onclick="openPedido(${r.id})">Ver</button></td>
-    </tr>`).join('')}
-    </tbody>
-  </table></div></div>`;
-  document.getElementById('tsrch').addEventListener('input',function(){
-    const q=this.value.toLowerCase();
-    document.querySelectorAll('#ttb tr').forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');
-  });
-}
-
-// ── FINANCEIRO ────────────────────────────────────────────────
-function pgFinanceiro(c){
-  const fd=filteredData();
-  const ap=fd.filter(r=>r.status==='Pagamento Aprovado');
-  const rec=ap.reduce((a,r)=>a+r.valor,0);
-  const com=ap.reduce((a,r)=>a+r.comissao,0);
-  const liq=rec-com;
-  const byForma=ap.reduce((a,r)=>{const k=r.forma_pag.trim()||'Outros';a[k]=(a[k]||0)+r.valor;return a;},{});
-  c.innerHTML=`
-  <div class="kg" style="grid-template-columns:repeat(4,1fr)">
-    <div class="kc" style="border-left:3px solid var(--ok)"><div class="kl">Receita bruta</div><div class="kv" style="color:var(--ok);font-size:14px">${money(rec)}</div><div class="ks">${ap.length} pedidos</div></div>
-    <div class="kc" style="border-left:3px solid var(--acc)"><div class="kl">Comissões</div><div class="kv" style="color:var(--acc);font-size:14px">${money(com)}</div><div class="ks">afiliados + produtor</div></div>
-    <div class="kc" style="border-left:3px solid var(--te)"><div class="kl">Líquido estimado</div><div class="kv" style="color:var(--te);font-size:14px">${money(liq)}</div><div class="ks">bruto - comissões</div></div>
-    <div class="kc" style="border-left:3px solid var(--pu)"><div class="kl">Ticket médio</div><div class="kv" style="color:var(--pu);font-size:14px">${ap.length?money(Math.round(rec/ap.length)):'—'}</div><div class="ks">por pedido aprovado</div></div>
-  </div>
-  <div class="p2">
-    <div class="card">
-      <div class="ch"><span class="ct2">Receita por forma de pagamento</span></div>
-      <div style="padding:0">
-        ${Object.entries(byForma).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`
-        <div class="row-l" style="padding:6px 12px">
-          <span style="color:var(--t2);font-size:11px">${k}</span>
-          <span style="font-family:var(--mono);font-size:11px;color:var(--ok)">${money(v)}</span>
-        </div>`).join('')}
-      </div>
-    </div>
-    <div class="card">
-      <div class="ch"><span class="ct2">Receita por estado (top 8)</span></div>
-      <div style="padding:0">
-        ${Object.entries(ap.reduce((a,r)=>{if(r.estado)a[r.estado]=(a[r.estado]||0)+r.valor;return a;},{})).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([e,v])=>`
-        <div class="row-l" style="padding:5px 12px">
-          <span style="color:var(--t2);font-size:11px">${e}</span>
-          <span style="font-family:var(--mono);font-size:11px;color:var(--ok)">${money(v)}</span>
-        </div>`).join('')}
-      </div>
-    </div>
-  </div>`;
-}
-
-// ── AFILIADOS ─────────────────────────────────────────────────
-function pgAfiliados(c){
-  const fd=filteredData().filter(r=>r.email_afil||r.src);
-  const bySrc=fd.reduce((a,r)=>{const k=r.src||'direto';if(!a[k])a[k]={n:0,val:0,com:0,ap:0};a[k].n++;a[k].val+=r.valor;a[k].com+=r.comissao;if(r.status==='Pagamento Aprovado')a[k].ap++;return a;},{});
-  c.innerHTML=`
-  <div style="margin-bottom:10px;font-family:var(--mono);font-size:12px">Desempenho por afiliado/src</div>
-  <div class="card"><table>
-    <thead><tr><th>Src / Afiliado</th><th>Pedidos</th><th>Aprovados</th><th>Taxa aprov.</th><th>Receita total</th><th>Comissão total</th></tr></thead>
-    <tbody>
-    ${Object.entries(bySrc).sort((a,b)=>b[1].ap-a[1].ap).map(([src,v])=>`<tr>
-      <td><span class="badge bac" style="font-size:9px">${src}</span></td>
-      <td class="tm">${v.n}</td>
-      <td style="color:var(--ok);font-family:var(--mono)">${v.ap}</td>
-      <td style="font-family:var(--mono);color:${v.n?Math.round(v.ap/v.n*100):0>=60?'var(--ok)':'var(--wa)'}">${v.n?Math.round(v.ap/v.n*100):0}%</td>
-      <td class="tm">${money(v.val)}</td>
-      <td class="tm">${money(v.com)}</td>
-    </tr>`).join('')}
-    </tbody>
-  </table></div>`;
-}
-
-// ── IMPORTAR PLANILHA ─────────────────────────────────────────
-function pgImportar(c){
-  c.innerHTML=`
-  <div style="max-width:700px;margin:0 auto">
-    <div class="card" style="margin-bottom:12px">
-      <div class="ch"><span class="ct2">⊞ Importar nova planilha (.xlsx / .csv)</span></div>
-      <div class="cb">
-        <div class="upload-zone" id="uz">
-          <input type="file" accept=".xlsx,.csv,.xls" onchange="handleFile(this)">
-          <div style="font-size:24px;margin-bottom:8px;opacity:.3">⊞</div>
-          <div style="font-size:13px;color:var(--t1);margin-bottom:4px">Arraste o arquivo aqui ou clique para selecionar</div>
-          <div style="font-size:11px;color:var(--t3)">Suporta: .xlsx · .csv · .xls</div>
-        </div>
-        <div id="import-preview" style="margin-top:10px"></div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:12px">
-      <div class="ch"><span class="ct2">Mapeamento de colunas obrigatórias</span><span class="badge bok">Planilha 004 — mapeada</span></div>
-      <div class="cb">
-        <div style="font-size:10px;color:var(--t3);margin-bottom:8px">Sua planilha deve conter as colunas abaixo para ser reconhecida automaticamente pelo sistema.</div>
-        <div class="col-map">
-          ${[['Codigo transação','trans_key','ok'],['Nome comprador','nome','ok'],['Telefone','tel','ok'],['status','status Braip','ok'],['status recebido','entrega','ok'],['Afterpay','afterpay flag','ok'],['Cod. Rastreio','rastreio','ok'],['valor','valor (R$)','ok'],['comissão','comissão afiliado','ok'],['forma de pagamento','forma pag.','ok'],['Plano','plano/produto','ok'],['Frascos','qtd frascos','ok'],['Estado','UF','ok'],['Cidade','cidade','ok'],['Endereço','endereço','ok'],['Documento','CPF/CNPJ','ok'],['PAGOS','lote pagamento','ok'],['Alterado','status financeiro','ok'],['N0-2','cobrança D0 T2','ok'],['N0-4','cobrança D0 T4','ok'],['N0-5','cobrança D0 T5','ok'],['N7-1','cobrança D7 T1','ok'],['N7-2','cobrança D7 T2','ok'],['N9-1','cobrança D9 T1','ok'],['N9-2','cobrança D9 T2','ok'],['RR','resultado final','ok'],['src','afiliado src','ok'],['E-mail Afiliado','e-mail afil.','ok'],['Valor-Afiliado','comissão afil.','ok']].map(([col,desc,status])=>`
-          <div class="col-item">
-            <div class="col-dot" style="background:${status==='ok'?'var(--ok)':'var(--wa)'}"></div>
-            <div>
-              <div style="font-family:var(--mono);color:var(--t1)">${col}</div>
-              <div style="color:var(--t3)">${desc}</div>
-            </div>
-          </div>`).join('')}
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="ch"><span class="ct2">Planilha atual carregada</span><span class="badge bok">${D.length} registros</span></div>
-      <div class="cb">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:11px">
-          ${[['Total registros',D.length,'acc'],['Aprovados',D.filter(r=>r.status==='Pagamento Aprovado').length,'ok'],['Devolvidos',D.filter(r=>r.status==='Devolvido').length,'er'],['Cancelados',D.filter(r=>r.status==='Cancelada').length,'t2'],['Afterpay',D.filter(r=>r.afterpay).length,'pu'],['Com rastreio',D.filter(r=>r.rastreio).length,'te']].map(([l,v,col])=>`
-          <div style="background:var(--bg);border:1px solid var(--b1);border-radius:var(--r);padding:8px;text-align:center">
-            <div style="font-size:9px;color:var(--t3);margin-bottom:3px">${l}</div>
-            <div style="font-family:var(--mono);font-size:18px;color:var(--${col})">${v}</div>
-          </div>`).join('')}
-        </div>
-      </div>
-    </div>
-  </div>`;
-
-  // Drag & drop visual
-  const uz=document.getElementById('uz');
-  ['dragover','dragleave','drop'].forEach(ev=>uz.addEventListener(ev,e=>{
-    e.preventDefault();
-    uz.classList.toggle('drag',ev==='dragover');
-    if(ev==='drop'&&e.dataTransfer.files[0])handleFileObj(e.dataTransfer.files[0]);
-  }));
-}
-
-window.handleFile=function(input){if(input.files[0])handleFileObj(input.files[0]);};
-window.handleFileObj=function(file){
-  const prev=document.getElementById('import-preview');
-  if(!prev)return;
-  prev.innerHTML=`<div class="fl2 wa"><span>⚠</span> Arquivo <b>${file.name}</b> (${(file.size/1024).toFixed(0)} KB) recebido. Em um sistema real, este arquivo seria processado e os dados importados automaticamente com base no mapeamento de colunas acima.</div>`;
-};
-
-// ── PLANILHA DADOS ────────────────────────────────────────────
-function pgPlanilha(c){
-  c.innerHTML=`
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-    <span style="font-family:var(--mono);font-size:12px">Dados importados — 004_teste (${D.length} registros)</span>
-    <input type="text" class="fc" id="plsrch" placeholder="Buscar..." style="width:200px;margin-left:auto;font-size:10px">
-  </div>
-  <div class="card"><div class="scroll-x"><table>
-    <thead><tr><th>#</th><th>Data</th><th>Key</th><th>Nome</th><th>Produto</th><th>Valor</th><th>Forma Pag.</th><th>Status</th><th>St.Rec.</th><th>Afterpay</th><th>Pagos</th><th>Alterado</th><th>Rastreio</th><th>UF</th></tr></thead>
-    <tbody id="pltb">
-    ${D.map(r=>`<tr>
-      <td class="tm" style="font-size:9px">${r.id}</td>
-      <td class="td" style="font-size:9px">${r.data}</td>
-      <td class="tm" style="font-size:8px">${r.key}</td>
-      <td style="font-size:10px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.nome}</td>
-      <td class="td" style="font-size:9px">${r.plano}</td>
-      <td class="tm" style="font-size:10px">${money(r.valor)}</td>
-      <td class="td" style="font-size:9px">${r.forma_pag.trim()||'—'}</td>
-      <td>${stBadge(r.status)}</td>
-      <td>${recBadge(r.st_rec)}</td>
-      <td style="text-align:center">${r.afterpay?`<span class="badge bpu" style="font-size:8px">SIM</span>`:'<span class="td">—</span>'}</td>
-      <td>${pagBadge(r.pagos||'—')}</td>
-      <td>${altBadge(r.alterado)}</td>
-      <td class="tm" style="font-size:8px">${r.rastreio||'—'}</td>
-      <td><span class="badge bne" style="font-size:8px">${r.estado}</span></td>
-    </tr>`).join('')}
-    </tbody>
-  </table></div></div>`;
-  document.getElementById('plsrch').addEventListener('input',function(){
-    const q=this.value.toLowerCase();
-    document.querySelectorAll('#pltb tr').forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');
-  });
-}
-
-// ── PEDIDO DETALHE ────────────────────────────────────────────
-window.openPedido=function(id){
-  const r=D.find(x=>x.id===id);if(!r)return;
-  openMod(`Pedido — ${r.nome}`,`
-    <div class="p2">
-      <div>
-        ${[['Trans. key',r.key],['Data/Hora',r.data+' '+r.hora],['Pago em',r.pago_em],['Nome',r.nome],['Telefone',r.tel],['CPF/Doc',r.doc],['Produto',r.plano],['Frascos',r.frascos+'fx'],['Valor',money(r.valor)],['Comissão',money(r.comissao)],['Forma pag.',r.forma_pag],['Parcelas',r.parcelas+'x'],['Afterpay',r.afterpay?'SIM':'NÃO'],['Src',r.src||'—']].map(([k,v])=>`
-        <div class="info-r"><span class="ik">${k}</span><span class="iv" style="font-family:var(--sans)">${v||'—'}</span></div>`).join('')}
-      </div>
-      <div>
-        ${[['Rastreio',r.rastreio||'—'],['Status Braip',r.status],['St. Recebido',r.st_rec||'—'],['PAGOS (lote)',r.pagos],['Alterado',r.alterado],['Endereço',r.endereco],['Cidade/UF',r.cidade+' - '+r.estado]].map(([k,v])=>`
-        <div class="info-r"><span class="ik">${k}</span><span class="iv" style="font-family:var(--sans)">${v||'—'}</span></div>`).join('')}
-        <div style="margin-top:10px;font-size:9px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase">Cobrança afterpay</div>
-        ${['N0_2','N0_4','N0_5','N7_1','N7_2','N9_1','N9_2','RR'].map(k=>`
-        <div class="info-r"><span class="ik" style="font-family:var(--mono)">${k.replace('_','·')}</span><span class="iv">${r[k]||'—'}</span></div>`).join('')}
-        <div style="margin-top:8px;display:flex;gap:6px">
-          ${r.afterpay?`<button class="btn btp bts" onclick="closeMod();openCobranca(${r.id})">Abrir cobrança →</button>`:''}
-        </div>
-      </div>
-    </div>
-  `,`<button class="btn btg bts" onclick="closeMod()">Fechar</button>`);
-};
-
-// Init
-['sf-status','sf-estado','sf-src'].forEach(id=>{
-  document.getElementById(id).addEventListener('change',()=>nav(curP));
-});
-initFilters();
-document.querySelectorAll('.ni').forEach(i=>i.addEventListener('click',()=>nav(i.dataset.p)));
-nav('dash');
+  // INICIALIZAÇÃO
+  loadFirebaseData();
 </script>
