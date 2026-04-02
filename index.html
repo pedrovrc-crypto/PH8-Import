@@ -174,10 +174,10 @@ select.fc option{background:var(--card)}
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // 2. ESTADO INICIAL
+  // 2. ESTADO
   let D = []; 
 
-  // 3. SINCRONIZAÇÃO FIREBASE
+  // 3. SINCRONIZAÇÃO
   async function loadFirebaseData() {
     try {
       const snap = await getDocs(collection(db, "leads_val"));
@@ -186,16 +186,16 @@ select.fc option{background:var(--card)}
         D.push({ id_db: doc.id, ...doc.data() });
       });
       initFilters();
-      nav('dash');
+      nav(curP);
     } catch(e) { console.error("Erro Firebase Load:", e); nav('dash'); }
   }
 
-  // 4. FUNÇÃO DE IMPORTAÇÃO REAL (CORREÇÃO DA FALHA)
+  // 4. MOTOR DE IMPORTAÇÃO REAL (CORREÇÃO DA FALHA)
   window.handleFileObj = async function(file) {
     const prev = document.getElementById('import-preview');
     if (!prev) return;
     
-    prev.innerHTML = `<div class="fl2 wa"><span>⏳</span> Lendo arquivo <b>${file.name}</b>...</div>`;
+    prev.innerHTML = `<div class="fl2 wa"><span>⏳</span> Lendo planilha <b>${file.name}</b>...</div>`;
     
     const reader = new FileReader();
     reader.onload = async (e) => {
@@ -205,19 +205,21 @@ select.fc option{background:var(--card)}
         const sheet = workbook.Sheets[workbook.SheetNames[0]];
         const json = XLSX.utils.sheet_to_json(sheet);
         
-        prev.innerHTML = `<div class="fl2 wa"><span>⏳</span> Importando ${json.length} registros para o Google Cloud...</div>`;
+        prev.innerHTML = `<div class="fl2 wa"><span>⏳</span> Importando ${json.length} registros para o Firebase...</div>`;
         
+        // Loop de importação real
         for (const row of json) {
-          // MAPEAMENTO CONFORME PRINT DO USUÁRIO
           const key = row['trans_key'] || row['Codigo transação'] || Math.random().toString(36).substr(2, 9);
           
+          if(!row['Codigo transação'] && !row['trans_key']) continue;
+
           await setDoc(doc(db, "leads_val", key.toString()), {
             key: key,
-            nome: row['Nome comprador'] || row['nome'] || '',
+            nome: row['Nome comprador'] || row['nome'] || 'Sem Nome',
             tel: row['Telefone'] || row['tel'] || '',
             plano: row['Plano'] || row['plano'] || '',
             valor: parseFloat(row['valor']) || 0,
-            status: row['status'] || 'Pagamento Aprovado',
+            status: row['status'] || 'Pendente',
             st_rec: row['status recebido'] || 'A Enviar',
             afterpay: (row['Afterpay'] === 'SIM' || row['afterpay'] == 1) ? 1 : 0,
             estado: row['Estado'] || row['UF'] || '',
@@ -225,44 +227,75 @@ select.fc option{background:var(--card)}
           }, { merge: true });
         }
         
-        prev.innerHTML = `<div class="fl2 ok"><span>✓</span> ${json.length} registros importados com sucesso!</div>`;
-        showF("Importação Concluída!", "ok");
-        setTimeout(() => loadFirebaseData(), 1500);
+        prev.innerHTML = `<div class="fl2 ok"><span>✓</span> ${json.length} registros sincronizados com sucesso!</div>`;
+        setTimeout(() => loadFirebaseData(), 2000);
       } catch (err) {
-        prev.innerHTML = `<div class="fl2 er"><span>✕</span> Erro no arquivo: ${err.message}</div>`;
+        prev.innerHTML = `<div class="fl2 er"><span>✕</span> Falha técnica: ${err.message}</div>`;
       }
     };
     reader.readAsArrayBuffer(file);
   };
 
-  // 5. FUNÇÕES DE INTERFACE
+  // 5. FUNÇÕES DE INTERFACE RECUPERADAS
+  function initFilters(){
+    const se=document.getElementById('sf-estado');
+    const ss=document.getElementById('sf-src');
+    if(!se || !ss) return;
+    const estados=[...new Set(D.map(r=>r.estado).filter(Boolean))].sort();
+    const srcs=[...new Set(D.map(r=>r.src).filter(Boolean))].sort();
+    se.innerHTML = '<option value="">Todos estados</option>';
+    ss.innerHTML = '<option value="">Todas srcs</option>';
+    estados.forEach(e=>{const o=document.createElement('option');o.value=e;o.textContent=e;se.appendChild(o);});
+    srcs.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;ss.appendChild(o);});
+  }
+
   window.nav = function(p) {
-    const P={dash:pgDash,pedidos:pgPedidos,importar:pgImportar,planilha:pgPlanilha};
+    curP=p;
+    const P={dash:pgDash,pedidos:pgPedidos,importar:pgImportar,planilha:pgPlanilha,cobranca:pgCobranca};
     const c=document.getElementById('content'); if(c) c.innerHTML='';
     if(P[p]) P[p](c);
     document.querySelectorAll('.ni').forEach(i=>i.classList.toggle('on',i.dataset.p===p));
+    document.getElementById('ptitle').textContent = p.toUpperCase();
   };
 
   function pgDash(c) {
-    c.innerHTML = `<div class="kg" style="grid-template-columns:repeat(4,1fr)"><div class="kc"><div class="kl">Total Nuvem</div><div class="kv">${D.length}</div></div></div>`;
+    c.innerHTML = `
+    <div class="kg" style="grid-template-columns:repeat(4,1fr)">
+      <div class="kc"><div class="kl">Nuvem Firebase</div><div class="kv" style="color:var(--ok)">ONLINE</div></div>
+      <div class="kc"><div class="kl">Total Leads</div><div class="kv">${D.length}</div></div>
+      <div class="kc"><div class="kl">Aprovados</div><div class="kv" style="color:var(--acc)">${D.filter(r=>r.status==='Pagamento Aprovado').length}</div></div>
+    </div>`;
   }
 
   function pgImportar(c) {
     c.innerHTML = `
-    <div class="card"><div class="ch"><span class="ct2">⊞ Importação Profissional</span></div>
-    <div class="cb"><div class="upload-zone" id="uz"><input type="file" onchange="handleFile(this)">Arraste ou clique para importar Excel</div>
-    <div id="import-preview"></div></div></div>`;
+    <div class="card" style="max-width:600px;margin:0 auto">
+      <div class="ch"><span class="ct2">⊞ Upload Real de Planilha</span></div>
+      <div class="cb">
+        <div class="upload-zone" id="uz">
+          <input type="file" accept=".xlsx,.csv" onchange="handleFile(this)">
+          Arraste ou clique para alimentar o sistema
+        </div>
+        <div id="import-preview" style="margin-top:12px"></div>
+      </div>
+    </div>`;
   }
 
   function pgPlanilha(c) {
-    c.innerHTML = `<div class="card"><table><thead><tr><th>Nome</th><th>Plano</th><th>Status</th></tr></thead><tbody>${D.map(r=>`<tr><td>${r.nome}</td><td>${r.plano}</td><td>${r.status}</td></tr>`).join('')}</tbody></table></div>`;
+    c.innerHTML = `
+    <div class="card"><div class="scroll-x"><table>
+      <thead><tr><th>Key</th><th>Nome</th><th>Plano</th><th>Status</th><th>Valor</th></tr></thead>
+      <tbody>${D.map(r=>`<tr><td class="tm">${r.key}</td><td>${r.nome}</td><td class="td">${r.plano}</td><td>${r.status}</td><td class="tm">R$ ${r.valor}</td></tr>`).join('')}</tbody>
+    </table></div></div>`;
   }
 
-  // EXPOSIÇÃO GLOBAL PARA HTML
+  // EXPOSIÇÃO GLOBAL
   window.handleFile = function(input) { if(input.files[0]) handleFileObj(input.files[0]); };
-  window.showF = (msg,t) => alert(msg);
+  window.curP = 'dash';
   window.closeMod = () => document.getElementById('mbg').classList.remove('open');
+  window.showF = (m,t) => alert(m);
 
-  // INICIALIZAÇÃO
+  // 6. INICIALIZAÇÃO
   loadFirebaseData();
+  document.querySelectorAll('.ni').forEach(i=>i.addEventListener('click',()=>nav(i.dataset.p)));
 </script>
