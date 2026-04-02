@@ -1,0 +1,1172 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0f12;--card:#13161b;--hov:#1a1e25;--inp:#080a0d;
+  --b1:#22272e;--b2:#2d3440;
+  --t1:#e8eaf0;--t2:#8b909c;--t3:#555c68;
+  --acc:#4f8ef7;--ad:#1a3260;
+  --ok:#2ecc71;--wa:#f39c12;--er:#e74c3c;--pu:#9b59b6;--te:#1abc9c;--pi:#e91e8c;
+  --r:5px;--mono:'DM Mono',monospace;--sans:'Inter',sans-serif;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--t1);font-size:13px}
+.app{display:flex;height:740px;border-radius:8px;overflow:hidden;border:1px solid var(--b1);position:relative}
+.sb{width:186px;background:var(--card);border-right:1px solid var(--b1);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
+.brand{padding:11px 12px;border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:7px}
+.bm{font-family:var(--mono);font-size:11px;color:var(--acc);background:var(--ad);border:1px solid var(--acc);border-radius:3px;padding:2px 6px}
+.bt{font-family:var(--mono);font-size:10px;color:var(--t2)}
+.ns{padding:3px 0;border-bottom:1px solid var(--b1)}
+.nl{font-size:9px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;padding:5px 11px 1px;font-weight:500}
+.ni{display:flex;align-items:center;gap:6px;padding:5px 11px;color:var(--t2);font-size:12px;cursor:pointer;border-right:2px solid transparent;border:none;background:none;width:100%;text-align:left;transition:all .1s}
+.ni:hover{background:var(--hov);color:var(--t1)}
+.ni.on{background:var(--ad);color:var(--acc);border-right:2px solid var(--acc)}
+.nb{margin-left:auto;font-family:var(--mono);font-size:8px;border-radius:8px;padding:1px 5px;font-weight:600;background:var(--wa);color:#000}
+.nb.er{background:var(--er);color:#fff}
+.nb.ok{background:var(--ok);color:#000}
+.nb.acc{background:var(--acc);color:#fff}
+.sf{margin-top:auto;padding:8px 11px;border-top:1px solid var(--b1);font-size:11px;color:var(--t2)}
+.mn{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.tb{height:43px;background:var(--card);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 13px;gap:8px;flex-shrink:0}
+.tt{font-family:var(--mono);font-size:12px;color:var(--t1);flex:1}
+.sl{background:var(--inp);border:1px solid var(--b2);color:var(--t1);border-radius:var(--r);padding:3px 7px;font-size:10px;font-family:var(--mono);cursor:pointer;outline:none}
+.ct{flex:1;padding:12px;overflow-y:auto}
+.kg{display:grid;gap:7px;margin-bottom:10px}
+.kc{background:var(--card);border:1px solid var(--b1);border-radius:var(--r);padding:8px 10px}
+.kl{font-size:8px;font-weight:600;color:var(--t3);letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px}
+.kv{font-family:var(--mono);font-size:19px;font-weight:500;line-height:1}
+.ks{font-size:9px;color:var(--t3);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden}
+.ch{padding:7px 12px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ct2{font-family:var(--mono);font-size:9px;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;font-weight:500}
+.cb{padding:10px}
+.p2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.p3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+thead th{background:var(--bg);color:var(--t3);font-size:8px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;text-align:left;border-bottom:1px solid var(--b1);white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--b1);transition:background .08s}
+tbody tr:hover{background:var(--hov)}
+tbody td{padding:5px 8px;color:var(--t1);vertical-align:middle}
+.tm{font-family:var(--mono);font-size:10px;color:var(--t2)}
+.td{color:var(--t3);font-size:10px}
+.badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:8px;font-weight:600;padding:1px 5px;border-radius:2px;text-transform:uppercase;white-space:nowrap}
+.bok{background:rgba(46,204,113,.13);color:#2ecc71;border:1px solid rgba(46,204,113,.28)}
+.ber{background:rgba(231,76,60,.13);color:#e74c3c;border:1px solid rgba(231,76,60,.28)}
+.bwa{background:rgba(243,156,18,.13);color:#f39c12;border:1px solid rgba(243,156,18,.28)}
+.bac{background:rgba(79,142,247,.13);color:#4f8ef7;border:1px solid rgba(79,142,247,.28)}
+.bpu{background:rgba(155,89,182,.13);color:#9b59b6;border:1px solid rgba(155,89,182,.28)}
+.bte{background:rgba(26,188,156,.13);color:#1abc9c;border:1px solid rgba(26,188,156,.28)}
+.bne{background:rgba(139,144,156,.08);color:var(--t2);border:1px solid var(--b1)}
+.btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--r);font-size:10px;font-weight:500;cursor:pointer;border:1px solid transparent;transition:all .12s;font-family:var(--sans)}
+.btp{background:var(--acc);color:#fff;border-color:var(--acc)}.btp:hover{background:#3d7de8}
+.btg{background:transparent;color:var(--t2);border-color:var(--b2)}.btg:hover{background:var(--hov);color:var(--t1)}
+.bto{background:var(--ok);color:#000;border-color:var(--ok)}
+.btw{background:transparent;color:var(--wa);border-color:var(--wa)}
+.btr{background:transparent;color:var(--er);border-color:var(--er)}
+.bts{padding:3px 8px;font-size:10px}
+.fc{width:100%;background:var(--inp);border:1px solid var(--b2);color:var(--t1);border-radius:var(--r);padding:4px 8px;font-size:11px;font-family:var(--sans);outline:none;transition:border-color .12s}
+.fc:focus{border-color:var(--acc)}.fc::placeholder{color:var(--t3)}.fc:disabled{opacity:.45}
+.fg{margin-bottom:8px}.fl{display:block;font-size:8px;font-weight:600;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.mbg{position:absolute;inset:0;background:rgba(0,0,0,.75);z-index:50;display:none;align-items:center;justify-content:center}
+.mbg.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--b2);border-radius:7px;width:96%;max-width:960px;max-height:95%;overflow-y:auto}
+.mh{padding:11px 14px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--card);z-index:2}
+.mt{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--t1)}
+.mc{background:none;border:none;color:var(--t3);font-size:18px;cursor:pointer;line-height:1}
+.mb{padding:14px}
+.mf{padding:9px 14px;border-top:1px solid var(--b1);display:flex;gap:6px;justify-content:flex-end;position:sticky;bottom:0;background:var(--card)}
+.fl2{padding:6px 9px;border-radius:var(--r);font-size:10px;margin-bottom:8px;border:1px solid transparent;display:flex;align-items:center;gap:5px}
+.fl2.ok{background:rgba(46,204,113,.09);color:var(--ok);border-color:rgba(46,204,113,.25)}
+.fl2.er{background:rgba(231,76,60,.09);color:var(--er);border-color:rgba(231,76,60,.25)}
+.fl2.wa{background:rgba(243,156,18,.09);color:var(--wa);border-color:rgba(243,156,18,.25)}
+.pr{height:3px;background:var(--b1);border-radius:2px;overflow:hidden;margin-top:3px}
+.pf{height:100%;border-radius:2px}
+.row-l{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--b1);font-size:11px}
+.row-l:last-child{border-bottom:none}
+.tl{display:flex;border-bottom:1px solid var(--b1);padding:0 12px;overflow-x:auto}
+.tab{padding:7px 10px;font-size:11px;cursor:pointer;border-bottom:2px solid transparent;color:var(--t2);background:none;border-top:none;border-left:none;border-right:none;transition:all .1s;white-space:nowrap}
+.tab:hover{color:var(--t1)}.tab.on{color:var(--acc);border-bottom-color:var(--acc)}
+.chkr{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--b1);cursor:pointer}
+.chkr:last-child{border-bottom:none}
+.chkr input{width:14px;height:14px;margin-top:2px;accent-color:var(--acc);cursor:pointer;flex-shrink:0}
+.sco{width:72px;height:72px;border-radius:50%;border:3px solid var(--b2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto;transition:border-color .3s}
+.info-r{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--b1);font-size:10px}
+.info-r:last-child{border-bottom:none}
+.ik{color:var(--t2)}.iv{color:var(--t1);font-family:var(--mono);text-align:right;font-size:10px;max-width:200px;overflow:hidden;text-overflow:ellipsis}
+.sec{font-size:9px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin:8px 0 5px;padding-bottom:4px;border-bottom:1px solid var(--b1);font-weight:600}
+.cob-tent{display:flex;align-items:center;gap:6px;padding:4px 9px;border-bottom:1px solid var(--b1);font-size:10px}
+.cob-tent:last-child{border-bottom:none}
+.cob-day{background:var(--bg);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;margin-bottom:7px}
+.cob-dh{padding:5px 9px;border-bottom:1px solid var(--b1);background:rgba(79,142,247,.06);display:flex;align-items:center;justify-content:space-between}
+.ativ-card{background:var(--bg);border:1px solid var(--b1);border-radius:var(--r);padding:9px 11px;margin-bottom:7px;display:flex;gap:9px;align-items:flex-start;transition:border-color .15s}
+.ativ-card:hover{border-color:var(--b2)}
+.ativ-card.done{opacity:.5}
+.ativ-prio{width:4px;border-radius:2px;align-self:stretch;flex-shrink:0;min-height:40px}
+.perm-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;max-height:220px;overflow-y:auto}
+.perm-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--t2);cursor:pointer;padding:3px 0}
+.avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:500;flex-shrink:0}
+.scroll-x{overflow-x:auto}
+select.fc option{background:var(--card)}
+</style>
+
+<div class="app" id="app">
+<aside class="sb">
+  <div class="brand"><span class="bm">PH8</span><span class="bt">DASH v3</span></div>
+
+  <div class="ns">
+    <div class="nl">Geral</div>
+    <button class="ni on" data-p="dash">⬡ Dashboard</button>
+    <button class="ni" data-p="atividades">◈ Atividades <span class="nb acc" id="atv-badge">0</span></button>
+  </div>
+
+  <div class="ns">
+    <div class="nl">Funil</div>
+    <button class="ni" data-p="leads">◎ Leads</button>
+    <button class="ni" data-p="pedidos">◈ Pedidos</button>
+    <button class="ni" data-p="validacao">◇ Validação <span class="nb" id="val-badge">0</span></button>
+  </div>
+
+  <div class="ns">
+    <div class="nl">Operação</div>
+    <button class="ni" data-p="cobranca">◬ Cobrança <span class="nb er" id="cob-badge">0</span></button>
+    <button class="ni" data-p="entregues">✓ Entregues</button>
+    <button class="ni" data-p="devolvidos">↩ Devolvidos</button>
+    <button class="ni" data-p="rastreio">⬟ Rastreio</button>
+  </div>
+
+  <div class="ns">
+    <div class="nl">Financeiro</div>
+    <button class="ni" data-p="financeiro">$ Financeiro</button>
+    <button class="ni" data-p="afiliados">◉ Afiliados</button>
+  </div>
+
+  <div class="ns">
+    <div class="nl">Sistema</div>
+    <button class="ni" data-p="colaboradores">▤ Colaboradores</button>
+    <button class="ni" data-p="importar">⊞ Importar Planilha</button>
+    <button class="ni" data-p="logs">▥ Logs de Auditoria</button>
+  </div>
+
+  <div class="sf">
+    <div style="font-size:10px;color:var(--t1);margin-bottom:1px">João Silva</div>
+    <div style="font-size:9px;color:var(--t3)">operador · ph8dash</div>
+  </div>
+</aside>
+
+<div class="mn">
+  <div class="tb">
+    <span class="tt" id="ptitle">Dashboard</span>
+    <select class="sl" id="sf-status"><option value="">Todos status</option><option value="Pagamento Aprovado">Aprovados</option><option value="Cancelada">Cancelados</option><option value="Devolvido">Devolvidos</option><option value="Agendado">Agendados</option></select>
+    <select class="sl" id="sf-estado"><option value="">Todos UF</option></select>
+    <button class="btn btg bts" onclick="nav(curP)">↻</button>
+  </div>
+  <div id="content" class="ct"></div>
+</div>
+
+<div class="mbg" id="mbg">
+  <div class="modal">
+    <div class="mh"><span class="mt" id="mtitle">—</span><button class="mc" onclick="closeMod()">×</button></div>
+    <div class="mb" id="mbody"></div>
+    <div class="mf" id="mfoot"></div>
+  </div>
+</div>
+</div>
+
+<script>
+// ── DADOS: Pedidos (004_teste) ────────────────────────────────
+const D=[
+{id:1,data:"31/10/2025",hora:"10:51",pago_em:"14/11/2025",key:"venxkr3pq0",src:"nanakw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Boleto",nome:"CLESIO TELOKEN",tel:"(45) 9998-1412",rastreio:"AN149849078BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PR",cidade:"Mercedes",endereco:"Avenida João XXIII, 393",doc:"557.003.229-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:2,data:"31/10/2025",hora:"11:00",pago_em:"14/11/2025",key:"ven9v7ym9p",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Boleto",nome:"JOSE DE RIBAMAR DA SILVA RAMOS",tel:"(91) 8241-1108",rastreio:"AN149852735BR",status:"Pagamento Aprovado",st_rec:"Aguardando Retirada",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PA",cidade:"Marituba",endereco:"Av. Fernando Guilhon, 4930",doc:"236.598.312-04",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:3,data:"31/10/2025",hora:"12:28",pago_em:"31/10/2025",key:"venodmvqyv",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"Boleto",nome:"LUIZ HERMENEGILDO ARANHA NETO",tel:"(93) 8807-3884",rastreio:"",status:"Cancelada",st_rec:"",pagos:"PAGO-S0024",alterado:"PAGO",estado:"PA",cidade:"Altamira",endereco:"Travessa Pedro Gomes, 785",doc:"116.469.422-72",afterpay:0,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:4,data:"31/10/2025",hora:"12:35",pago_em:"06/11/2025",key:"ven7m27ykn",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Boleto",nome:"JOAO DE OLIVEIRA",tel:"(18) 99643-4416",rastreio:"AN149865725BR",status:"Pagamento Aprovado",st_rec:"A Caminho",pagos:"PAGO-S0025",alterado:"PAGO",estado:"SP",cidade:"Andradina",endereco:"Rua Rodrigues Alves, 794",doc:"706.286.028-04",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:5,data:"31/10/2025",hora:"14:55",pago_em:"19/11/2025",key:"ven3w1723j",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Pix",nome:"JOSE SEBASTIAO DINIZ",tel:"(94) 8127-0702",rastreio:"AN158136225BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PA",cidade:"Marabá",endereco:"Quadra Três, 13 Lote 17",doc:"436.358.069-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:6,data:"31/10/2025",hora:"15:33",pago_em:"14/11/2025",key:"veng7qxl3y",src:"nanakw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Pix",nome:"Manoel do Espírito Santo Pinheiro",tel:"(91) 9135-7391",rastreio:"AN158156724BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PA",cidade:"Abaetetuba",endereco:"Rua Siqueira Mendes, 1278",doc:"329.733.222-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:7,data:"31/10/2025",hora:"16:45",pago_em:"21/11/2025",key:"veng7qxqwg",src:"nanakw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH",nome:"JOAOZITO CORREIA NASCIMENTO",tel:"(11) 96605-4585",rastreio:"AN158192885BR",status:"Devolvido",st_rec:"Frustrada",pagos:"PAGO-S0024",alterado:"PAGO",estado:"SP",cidade:"São Paulo",endereco:"Rua Hyde Park, 1448",doc:"257.987.178-01",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:8,data:"01/11/2025",hora:"09:50",pago_em:"27/11/2025",key:"ven7m27ozv",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH Boleto",nome:"DEBIR SEVERIANO DE PAULA",tel:"(31) 8672-6777",rastreio:"AN158291415BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"MG",cidade:"Lagoa Santa",endereco:"Rua das Acácias, 270",doc:"320.335.756-91",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:9,data:"01/11/2025",hora:"10:02",pago_em:"01/11/2025",key:"venpwmk2gg",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH",nome:"ANTONIO FERREIRA DA SILVA",tel:"(21) 97492-7629",rastreio:"AN158314924BR",status:"Devolvido",st_rec:"Postado",pagos:"PAGO-S0025",alterado:"PAGO",estado:"RJ",cidade:"Rio de Janeiro",endereco:"Rua Cherburgo, 143",doc:"531.676.437-49",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:10,data:"01/11/2025",hora:"11:17",pago_em:"10/11/2025",key:"vendw20r3j",src:"",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:1914,forma_pag:"CASH Boleto",nome:"ABRAAO JOAQUIM DE SA TELES",tel:"(11) 99955-9249",rastreio:"AN158340875BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"SP",cidade:"Santana de Parnaíba",endereco:"Rua Quinze de Novembro, 625",doc:"408.683.705-68",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:11,data:"01/11/2025",hora:"12:27",pago_em:"10/11/2025",key:"venq2gk1lp",src:"ceokw32",produto:"RedMen",plano:"AZP RM5 5fx",frascos:5,valor:42700,comissao:22854,forma_pag:"CASH Boleto",nome:"JOSE ANTONIO PEREIRA",tel:"(77) 9122-3197",rastreio:"AN158389508BR",status:"Pagamento Aprovado",st_rec:"Aguardando Retirada",pagos:"PAGO-S0025",alterado:"PAGO",estado:"BA",cidade:"Serra do Ramalho",endereco:"Av. Central Norte, SN",doc:"407.367.095-68",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:12,data:"02/11/2025",hora:"11:04",pago_em:"21/11/2025",key:"venykr0qyx",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH",nome:"BENEDITO ANTONIO DA SILVA",tel:"(73) 9940-4917",rastreio:"AN158496802BR",status:"Devolvido",st_rec:"Frustrada",pagos:"PAGO-S0025",alterado:"PAGO",estado:"BA",cidade:"Canavieiras",endereco:"Praça Quinze de Novembro, 2074",doc:"1196299501",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:13,data:"02/11/2025",hora:"12:43",pago_em:"19/11/2025",key:"venv9rvopo",src:"ceokw21",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:15667,forma_pag:"CASH",nome:"EZEQUIEL TONDATTI",tel:"(17) 99219-0749",rastreio:"AN158516334BR",status:"Devolvido",st_rec:"Frustrada",pagos:"PAGO-S0025",alterado:"PAGO",estado:"SP",cidade:"São José do Rio Preto",endereco:"Av. Potirendaba, 1600",doc:"8619580809",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:14,data:"02/11/2025",hora:"13:13",pago_em:"02/11/2025",key:"venk0mgpzy",src:"",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:1914,forma_pag:"CASH",nome:"EDUARDO RODRIGUES",tel:"(91) 8340-1033",rastreio:"AN158535510BR",status:"Devolvido",st_rec:"Postado",pagos:"PAGO-S0025",alterado:"PAGO",estado:"PA",cidade:"Benevides",endereco:"Rua Paulo Begot, 230",doc:"640.470.912-00",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+{id:15,data:"03/11/2025",hora:"06:13",pago_em:"28/11/2025",key:"ven11qw3or",src:"",produto:"RedMen",plano:"AZP RM3 3fx",frascos:3,valor:29700,comissao:12696,forma_pag:"CASH Pix",nome:"SEBASTIAO SILVA RODRIGUES",tel:"(99) 8536-5239",rastreio:"AN158607619BR",status:"Pagamento Aprovado",st_rec:"Entregue",pagos:"PAGO-S0025",alterado:"PAGO",estado:"MA",cidade:"Poção de Pedras",endereco:"Av. Israel Gonçalves, 73",doc:"790.156.703-15",afterpay:1,N0_2:"",N0_4:"",N0_5:"",N7_1:"",N7_2:"",N7_4:"",N9_1:"",N9_2:"",RR:""},
+];
+
+// ── DADOS: Leads (002_treste) ─────────────────────────────────
+const LEADS=[
+{id:1,data:"21/03 17:01",key:"venpwqwxkd",valor:29700,produto:"AZP RM3 3fx",src:"valekw21",logCod:"4945",logOk:"OK",nome:"JOSE EUDES DOS SANTOS",tel:"(93) 9238-7841",dig5:"87841",ligacao:"Atendeu",pedido:"----",operador:"JAQUELANE",statusVend:"AG-ENTREGA",dataPrev:"28/04/2026",estado:"PA",rastreio:"Rastreio",doc:"701.981.522-72",endereco:"Rua Pedro Alvares Cabral, 277, Centro, Uruará - PA",obs:"",val:{status:"approved",score:90,risk:"low",callAttempted:1,callAnswered:1,wpConfirmed:1,orderConfirmed:1,addrConfirmed:1,prodConfirmed:1,attempts:1,reason:"Aprovado, tudo confirmado",notes:""}},
+{id:2,data:"23/03 13:47",key:"venk05rryw",valor:29700,produto:"AZP RM3 3fx",src:"pedrokw21",logCod:"4945",logOk:"OK",nome:"OSMANO JOSE BATISTA",tel:"(69) 9323-4508",dig5:"34508",ligacao:"Atendeu",pedido:"ENVIAR BOLETO",operador:"JAQUELANE",statusVend:"AG-ENTREGA",dataPrev:"05/04/2026",estado:"RO",rastreio:"Rastreio",doc:"290.472.422-20",endereco:"Av. Acir José Damasceno, 4560, Vale do Anari - RO",obs:"Pedro vai enviar boleto próximo à data",val:{status:"pending",score:55,risk:"medium",callAttempted:1,callAnswered:1,wpConfirmed:1,orderConfirmed:0,addrConfirmed:1,prodConfirmed:0,attempts:1,reason:"",notes:""}},
+{id:3,data:"26/03 20:27",key:"venlow7gv0",valor:42700,produto:"AZP RM5 5fx",src:"pedrokw32",logCod:"4945",logOk:"OK",nome:"GILBERTO FIRMINO DE FRANCA",tel:"(64) 9645-8854",dig5:"58854",ligacao:"Não Atendeu",pedido:"----",operador:"JAQUELANE",statusVend:"",dataPrev:"",estado:"GO",rastreio:"Rastreio",doc:"404.134.464-68",endereco:"Av. Dorival de Carvalho, 1007, Jataí - GO",obs:"",val:{status:"pending",score:10,risk:"high",callAttempted:1,callAnswered:0,wpConfirmed:0,orderConfirmed:0,addrConfirmed:1,prodConfirmed:1,attempts:2,reason:"",notes:"Tentou 2x não atendeu"}},
+{id:4,data:"26/03 19:50",key:"venxk4pr3q",valor:42700,produto:"AZP RM5 5fx",src:"valekw32",logCod:"2385",logOk:"OK",nome:"JOAO MARQUES DE OLIVEIRA",tel:"(66) 8424-4120",dig5:"44120",ligacao:"Atendeu",pedido:"AGUARD-CONFIRMAR",operador:"JAQUELANE",statusVend:"",dataPrev:"",estado:"PR",rastreio:"Rastreio",doc:"395.176.161-04",endereco:"Av. Tancredo Neves, 513, Cap. Leônidas Marques - PR",obs:"",val:{status:"pending",score:45,risk:"medium",callAttempted:1,callAnswered:1,wpConfirmed:1,orderConfirmed:0,addrConfirmed:0,prodConfirmed:0,attempts:1,reason:"",notes:""}},
+{id:5,data:"27/03 10:39",key:"ven7mnqnmg",valor:29700,produto:"AZP RM3 3fx",src:"valekw21",logCod:"3581",logOk:"OK",nome:"JOAO MANOEL DE JESUS",tel:"(71) 8181-6645",dig5:"16645",ligacao:"Atendeu",pedido:"BOLETO ENVIADO",operador:"JAQUELANE",statusVend:"",dataPrev:"",estado:"BA",rastreio:"Rastreio",doc:"123.125.175-15",endereco:"Av. Santos Dumont, 281, Lauro de Freitas - BA",obs:"",val:{status:"approved",score:75,risk:"low",callAttempted:1,callAnswered:1,wpConfirmed:1,orderConfirmed:1,addrConfirmed:1,prodConfirmed:0,attempts:1,reason:"Aprovado, endereço ok",notes:""}},
+{id:6,data:"27/03 12:32",key:"ven4wgml2y",valor:42700,produto:"AZP RM5 5fx",src:"pedrokw32",logCod:"2385",logOk:"PRIMEIRO-CONTATO",nome:"NILSON PAULO DE OLIVEIRA QUEIROZ",tel:"(93) 9142-7231",dig5:"27231",ligacao:"Atendeu",pedido:"LIBERADO ENVIO",operador:"LUCIMAR",statusVend:"",dataPrev:"",estado:"PA",rastreio:"",doc:"387.585.392-04",endereco:"Av. Dr. Hugo de Mendonça, 420, Itaituba - PA",obs:"",val:{status:"pending",score:55,risk:"medium",callAttempted:1,callAnswered:1,wpConfirmed:0,orderConfirmed:1,addrConfirmed:1,prodConfirmed:0,attempts:1,reason:"",notes:"Primeiro contato, aguardar confirmação"}},
+{id:7,data:"29/03 16:45",key:"vennx3zr24",valor:29700,produto:"AZP RM3 3fx",src:"valekw21",logCod:"9542",logOk:"OK",nome:"SEBASTIAO CESAR BATISTA",tel:"(84) 9649-5043",dig5:"95043",ligacao:"----",pedido:"----",operador:"---",statusVend:"",dataPrev:"",estado:"RN",rastreio:"Rastreio",doc:"213.490.846-7",endereco:"Praça Rafael Fernandes, 8, Mossoró - RN",obs:"tentar pagamento a vista no boleto",val:{status:"rejected",score:0,risk:"high",callAttempted:0,callAnswered:0,wpConfirmed:0,orderConfirmed:0,addrConfirmed:0,prodConfirmed:0,attempts:0,reason:"Sem contato algum",notes:""}},
+{id:8,data:"31/03 08:50",key:"vennx3z174",valor:42700,produto:"AZP RM5 5fx",src:"valekw32",logCod:"3581",logOk:"OK",nome:"ADELINO GORGONHO DE MOURA",tel:"(63) 9269-1992",dig5:"91992",ligacao:"",pedido:"",operador:"",statusVend:"",dataPrev:"",estado:"TO",rastreio:"Rastreio",doc:"495.670.631-68",endereco:"Praça Coronel Joaquim S. Silva, 21, Arraias - TO",obs:"",val:{status:"pending",score:null,risk:null,callAttempted:0,callAnswered:0,wpConfirmed:0,orderConfirmed:0,addrConfirmed:0,prodConfirmed:0,attempts:0,reason:"",notes:""}},
+];
+
+// ── DADOS: Colaboradores ──────────────────────────────────────
+const COLABS=[
+{id:1,nome:"Admin",email:"admin@ph8dash.clickt.in",tel:"(00) 00000-0000",status:"active",admin:true,perms:["*"]},
+{id:2,nome:"João Silva",email:"joao@ph8dash.clickt.in",tel:"(11) 99001-1111",status:"active",admin:false,perms:["dashboard_view","validacao_view","validacao_edit","cobranca_view","pedidos_view","leads_view"]},
+{id:3,nome:"Maria Paula",email:"maria@ph8dash.clickt.in",tel:"(21) 99002-2222",status:"active",admin:false,perms:["dashboard_view","validacao_view","validacao_edit","leads_view","cobranca_view"]},
+{id:4,nome:"Rafael Mota",email:"rafael@ph8dash.clickt.in",tel:"(31) 99003-3333",status:"inactive",admin:false,perms:["dashboard_view"]},
+{id:5,nome:"Lucimar Costa",email:"lucimar@ph8dash.clickt.in",tel:"(91) 99004-4444",status:"active",admin:false,perms:["dashboard_view","cobranca_view","leads_view","pedidos_view"]},
+];
+
+const ALL_PERMS=[
+  "dashboard_view","leads_view","pedidos_view","validacao_view","validacao_edit",
+  "cobranca_view","cobranca_edit","entregues_view","rastreio_view","financeiro_view",
+  "afiliados_view","colaboradores_view","colaboradores_edit","logs_view","importar"
+];
+
+// ── DADOS: Atividades ─────────────────────────────────────────
+const ATIVS=[
+{id:1,titulo:"Retornar cliente JOSE EUDES",descricao:"Ligar novamente para confirmar entrega - pedido venpwqwxkd",data:"10/04/2026",hora:"14:00",prioridade:"alta",tipo:"ligacao",status:"pendente",responsavel:"João Silva",lead_id:1},
+{id:2,titulo:"Enviar boleto OSMANO BATISTA",descricao:"Cliente solicitou envio do boleto antes da data prevista",data:"05/04/2026",hora:"10:00",prioridade:"alta",tipo:"cobranca",status:"pendente",responsavel:"JAQUELANE",lead_id:2},
+{id:3,titulo:"Confirmar retirada JOSE RIBAMAR",descricao:"Aguardando retirada nos Correios - Marituba PA - rastreio AN149852735BR",data:"08/04/2026",hora:"09:00",prioridade:"media",tipo:"rastreio",status:"pendente",responsavel:"João Silva",lead_id:null},
+{id:4,titulo:"Follow-up GILBERTO FRANCA",descricao:"3ª tentativa de contato - cliente não atendeu nas 2 anteriores",data:"07/04/2026",hora:"16:00",prioridade:"media",tipo:"ligacao",status:"pendente",responsavel:"Maria Paula",lead_id:3},
+{id:5,titulo:"Revisar devolvidos semana",descricao:"Analisar 4 devoluções da semana e registrar motivos",data:"12/04/2026",hora:"08:00",prioridade:"baixa",tipo:"interno",status:"pendente",responsavel:"Admin",lead_id:null},
+{id:6,titulo:"Cobrar JOSE ANTONIO PEREIRA",descricao:"Aguardando retirada - Serra do Ramalho BA - D7 tentativa 1",data:"06/04/2026",hora:"11:00",prioridade:"alta",tipo:"cobranca",status:"concluida",responsavel:"João Silva",lead_id:null},
+];
+
+// ── AUDITORIA ─────────────────────────────────────────────────
+const AUDITLOG=[
+{time:"31/03 14:22",user:"João S.",action:"validation_approved",entity:"leads",detail:"venpwqwxkd — score 90",ip:"177.x.x.1"},
+{time:"31/03 13:30",user:"João S.",action:"validation_rejected",entity:"leads",detail:"vennx3zr24 — score 0",ip:"177.x.x.1"},
+{time:"31/03 12:10",user:"Maria P.",action:"validation_pending",entity:"leads",detail:"venlow7gv0 — score 10",ip:"189.x.x.4"},
+{time:"31/03 11:00",user:"Admin",action:"colab_created",entity:"colaboradores",detail:"Lucimar Costa",ip:"200.x.x.7"},
+{time:"31/03 10:30",user:"Maria P.",action:"atividade_criada",entity:"atividades",detail:"Retornar cliente JOSE EUDES",ip:"189.x.x.4"},
+{time:"31/03 09:00",user:"João S.",action:"login",entity:"users",detail:"—",ip:"177.x.x.1"},
+];
+
+// ── HELPERS ───────────────────────────────────────────────────
+const money=c=>'R$ '+(c/100).toLocaleString('pt-BR',{minimumFractionDigits:2});
+const scoreCalc=v=>{let s=0;if(v.callAttempted)s+=10;if(v.callAnswered)s+=25;if(v.wpConfirmed)s+=20;if(v.orderConfirmed)s+=20;if(v.addrConfirmed)s+=15;if(v.prodConfirmed)s+=10;return Math.min(s,100);};
+const riskCalc=s=>s>=70?'low':s>=40?'medium':'high';
+const stBadge=s=>{const m={'Pagamento Aprovado':'bok','Devolvido':'ber','Cancelada':'bne','Cancelado':'bne','Agendado':'bwa','Frustrada':'ber','Pagamento Atrasado':'bpu'};return`<span class="badge ${m[s]||'bne'}">${s||'—'}</span>`;};
+const recBadge=s=>{const m={'Entregue':'bok','Aguardando Retirada':'bwa','Frustrada':'ber','A Enviar':'bac','A Caminho':'bte','Postado':'bpu'};return`<span class="badge ${m[s]||'bne'}">${s||'—'}</span>`;};
+const valBadge=s=>{const m={approved:'bok',rejected:'ber',pending:'bwa'};const l={approved:'aprovado',rejected:'rejeitado',pending:'pendente'};return`<span class="badge ${m[s]||'bne'}">${l[s]||s}</span>`;};
+const riskBadge=r=>{const m={low:'bok',medium:'bwa',high:'ber'};const l={low:'baixo',medium:'médio',high:'alto'};return r?`<span class="badge ${m[r]}">${l[r]}</span>`:'<span class="td">—</span>';};
+const ligBadge=l=>{if(l==='Atendeu')return`<span class="badge bok">${l}</span>`;if(l==='Não Atendeu')return`<span class="badge ber">${l}</span>`;if(l&&l!='----')return`<span class="badge bne">${l}</span>`;return'<span class="td">—</span>';};
+const pedidoBadge=p=>{const m={'LIBERADO ENVIO':'bok','AG-DATA-ENVIO':'bte','AGUARD-CONFIRMAR':'bwa','BOLETO ENVIADO':'bac','ENVIAR BOLETO':'bpu'};return p&&m[p]?`<span class="badge ${m[p]}">${p}</span>`:p?`<span class="badge bne">${p}</span>`:'<span class="td">—</span>';};
+const logBadge=ok=>{if(ok==='OK')return`<span class="badge bok">✓ OK</span>`;if(ok==='PRIMEIRO-CONTATO')return`<span class="badge bwa">1º contato</span>`;return`<span class="badge bne">${ok||'—'}</span>`;};
+const altBadge=s=>{if(s==='PAGO')return`<span class="badge bok">PAGO</span>`;if(s==='ESPERA')return`<span class="badge bwa">ESPERA</span>`;if(s==='FRUSTRADO')return`<span class="badge ber">FRUSTRADO</span>`;return`<span class="badge bne">${s||'—'}</span>`;};
+const prioBadge=p=>{const m={alta:'ber',media:'bwa',baixa:'bne'};return`<span class="badge ${m[p]||'bne'}">${p}</span>`;};
+const tipoBadge=t=>{const m={ligacao:'bac',cobranca:'bpu',rastreio:'bte',interno:'bne'};return`<span class="badge ${m[t]||'bne'}">${t}</span>`;};
+const scoreColor=s=>s>=70?'var(--ok)':s>=40?'var(--wa)':'var(--er)';
+
+let curP='dash',flashT=null;
+function showF(msg,t='ok'){
+  const c=document.getElementById('content');const o=c.querySelector('.fl2');if(o)o.remove();
+  const d=document.createElement('div');d.className=`fl2 ${t}`;
+  d.innerHTML=`<span>${t==='ok'?'✓':t==='er'?'✕':'⚠'}</span> ${msg}`;
+  c.insertBefore(d,c.firstChild);if(flashT)clearTimeout(flashT);flashT=setTimeout(()=>d.remove(),5000);
+}
+function openMod(title,body,foot){
+  document.getElementById('mtitle').textContent=title;
+  document.getElementById('mbody').innerHTML=body;
+  document.getElementById('mfoot').innerHTML=foot||`<button class="btn btg bts" onclick="closeMod()">Fechar</button>`;
+  document.getElementById('mbg').classList.add('open');
+}
+function closeMod(){document.getElementById('mbg').classList.remove('open');}
+document.getElementById('mbg').addEventListener('click',e=>{if(e.target===document.getElementById('mbg'))closeMod();});
+
+function fd(){
+  const st=document.getElementById('sf-status').value;
+  const es=document.getElementById('sf-estado').value;
+  return D.filter(r=>(!st||r.status===st)&&(!es||r.estado===es));
+}
+function initFilters(){
+  const estados=[...new Set(D.map(r=>r.estado).filter(Boolean))].sort();
+  const se=document.getElementById('sf-estado');
+  estados.forEach(e=>{const o=document.createElement('option');o.value=e;o.textContent=e;se.appendChild(o);});
+}
+
+function updateBadges(){
+  const vPend=LEADS.filter(l=>l.val.status==='pending').length;
+  const cPend=D.filter(r=>r.afterpay&&(r.st_rec==='Aguardando Retirada'||r.st_rec==='Entregue')).length;
+  const aPend=ATIVS.filter(a=>a.status==='pendente').length;
+  const vb=document.getElementById('val-badge');if(vb){vb.textContent=vPend;vb.style.display=vPend?'':'none';}
+  const cb=document.getElementById('cob-badge');if(cb){cb.textContent=cPend;cb.style.display=cPend?'':'none';}
+  const ab=document.getElementById('atv-badge');if(ab){ab.textContent=aPend;ab.style.display=aPend?'':'none';}
+}
+
+function nav(p){
+  curP=p;
+  document.querySelectorAll('.ni').forEach(i=>i.classList.toggle('on',i.dataset.p===p));
+  const T={dash:'Dashboard',atividades:'Atividades',leads:'Leads (002)',pedidos:'Pedidos (004)',validacao:'Validação',cobranca:'Cobrança Afterpay',entregues:'Entregues',devolvidos:'Devolvidos',rastreio:'Rastreio',financeiro:'Financeiro',afiliados:'Afiliados',colaboradores:'Colaboradores',importar:'Importar Planilha',logs:'Logs de Auditoria'};
+  document.getElementById('ptitle').textContent=T[p]||p;
+  updateBadges();
+  const pages={dash:pgDash,atividades:pgAtividades,leads:pgLeads,pedidos:pgPedidos,validacao:pgValidacao,cobranca:pgCobranca,entregues:pgEntregues,devolvidos:pgDevolvidos,rastreio:pgRastreio,financeiro:pgFinanceiro,afiliados:pgAfiliados,colaboradores:pgColaboradores,importar:pgImportar,logs:pgLogs};
+  const c=document.getElementById('content');c.innerHTML='';
+  if(pages[p])pages[p](c);
+}
+
+// ═══════════════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════════════
+function pgDash(c){
+  const ap=D.filter(r=>r.status==='Pagamento Aprovado').length;
+  const dv=D.filter(r=>r.status==='Devolvido').length;
+  const ca=D.filter(r=>r.status==='Cancelada').length;
+  const rec=D.filter(r=>r.status==='Pagamento Aprovado').reduce((a,r)=>a+r.valor,0);
+  const entregues=D.filter(r=>r.st_rec==='Entregue').length;
+  const agRet=D.filter(r=>r.st_rec==='Aguardando Retirada').length;
+  const vPend=LEADS.filter(l=>l.val.status==='pending').length;
+  const atvPend=ATIVS.filter(a=>a.status==='pendente').length;
+  const atvHoje=ATIVS.filter(a=>a.status==='pendente').slice(0,3);
+
+  c.innerHTML=`
+  <div class="kg" style="grid-template-columns:repeat(4,1fr)">
+    <div class="kc" style="border-left:3px solid var(--ok)"><div class="kl">Receita Bruta</div><div class="kv" style="color:var(--ok);font-size:14px">${money(rec)}</div><div class="ks">${ap} aprovados</div></div>
+    <div class="kc" style="border-left:3px solid var(--er)"><div class="kl">Devolvidos</div><div class="kv" style="color:var(--er)">${dv}</div><div class="ks">monitorar</div></div>
+    <div class="kc" style="border-left:3px solid var(--wa);cursor:pointer" onclick="nav('validacao')"><div class="kl">Val. Pendentes</div><div class="kv" style="color:var(--wa)">${vPend}</div><div class="ks">aguardam decisão</div></div>
+    <div class="kc" style="border-left:3px solid var(--acc);cursor:pointer" onclick="nav('atividades')"><div class="kl">Atividades</div><div class="kv" style="color:var(--acc)">${atvPend}</div><div class="ks">pendentes</div></div>
+  </div>
+  <div class="p2">
+    <div class="card">
+      <div class="ch"><span class="ct2">Status de entrega</span><button class="btn btg bts" onclick="nav('cobranca')">Cobrança →</button></div>
+      <div style="padding:0">
+        ${[['Entregue',entregues,'ok'],['Ag. Retirada',agRet,'wa'],['Frustrada',D.filter(r=>r.st_rec==='Frustrada').length,'er'],['A Caminho',D.filter(r=>r.st_rec==='A Caminho').length,'te'],['Postado',D.filter(r=>r.st_rec==='Postado').length,'pu']].map(([l,v,col])=>`
+        <div class="row-l" style="padding:5px 12px"><span style="color:var(--t2)">${l}</span><span style="font-family:var(--mono);color:var(--${col})">${v}</span></div>`).join('')}
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct2">Próximas atividades</span><button class="btn btg bts" onclick="nav('atividades')">Ver todas →</button></div>
+      <div style="padding:8px">
+        ${atvHoje.map(a=>`
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--b1);font-size:11px">
+          <div style="width:3px;height:28px;background:${a.prioridade==='alta'?'var(--er)':a.prioridade==='media'?'var(--wa)':'var(--t3)'};border-radius:2px;flex-shrink:0"></div>
+          <div style="flex:1;overflow:hidden">
+            <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.titulo}</div>
+            <div style="color:var(--t3);font-size:9px">${a.data} ${a.hora} · ${a.responsavel}</div>
+          </div>
+          ${tipoBadge(a.tipo)}
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>
+  <div class="p3">
+    <div class="card">
+      <div class="ch"><span class="ct2">Validação leads</span><button class="btn btg bts" onclick="nav('validacao')">Ver →</button></div>
+      <div style="padding:0">
+        ${[['Pendentes',LEADS.filter(l=>l.val.status==='pending').length,'wa'],['Aprovados',LEADS.filter(l=>l.val.status==='approved').length,'ok'],['Rejeitados',LEADS.filter(l=>l.val.status==='rejected').length,'er']].map(([l,v,col])=>`
+        <div class="row-l" style="padding:5px 12px"><span style="color:var(--t2)">${l}</span><span style="font-family:var(--mono);color:var(--${col})">${v}</span></div>`).join('')}
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct2">Top estados</span></div>
+      <div style="padding:0">
+        ${Object.entries(D.reduce((a,r)=>{if(r.estado)a[r.estado]=(a[r.estado]||0)+1;return a;},{})).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([e,n])=>`
+        <div class="row-l" style="padding:4px 12px"><span style="color:var(--t2)">${e}</span><span style="font-family:var(--mono);color:var(--acc)">${n}</span></div>`).join('')}
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct2">Ações rápidas</span></div>
+      <div class="cb" style="display:flex;flex-direction:column;gap:5px">
+        <button class="btn btg" style="justify-content:space-between;font-size:11px" onclick="nav('validacao')">◇ Validação <span class="badge bwa">${vPend} pend.</span></button>
+        <button class="btn btg" style="justify-content:space-between;font-size:11px" onclick="nav('cobranca')">◬ Cobrança <span class="badge bwa">${agRet} ag.ret.</span></button>
+        <button class="btn btg" style="justify-content:flex-start;font-size:11px" onclick="nav('atividades')">◈ Atividades (${atvPend})</button>
+        <button class="btn btg" style="justify-content:flex-start;font-size:11px" onclick="nav('colaboradores')">▤ Colaboradores</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════
+// ATIVIDADES
+// ═══════════════════════════════════════════════════
+function pgAtividades(c){
+  const pend=ATIVS.filter(a=>a.status==='pendente');
+  const done=ATIVS.filter(a=>a.status==='concluida');
+  const alta=pend.filter(a=>a.prioridade==='alta');
+
+  c.innerHTML=`
+  <div class="kg" style="grid-template-columns:repeat(4,1fr);margin-bottom:10px">
+    <div class="kc" style="border-left:3px solid var(--acc)"><div class="kl">Total atividades</div><div class="kv" style="color:var(--acc)">${ATIVS.length}</div><div class="ks">cadastradas</div></div>
+    <div class="kc" style="border-left:3px solid var(--wa)"><div class="kl">Pendentes</div><div class="kv" style="color:var(--wa)">${pend.length}</div><div class="ks">aguardando</div></div>
+    <div class="kc" style="border-left:3px solid var(--er)"><div class="kl">Alta prioridade</div><div class="kv" style="color:var(--er)">${alta.length}</div><div class="ks">urgente</div></div>
+    <div class="kc" style="border-left:3px solid var(--ok)"><div class="kl">Concluídas</div><div class="kv" style="color:var(--ok)">${done.length}</div><div class="ks">finalizadas</div></div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+    <button class="btn btp bts" onclick="openNovaAtividade()">+ Nova atividade</button>
+    <input type="text" class="fc" id="atvsrch" placeholder="Buscar atividade..." style="width:200px;margin-left:auto;font-size:10px">
+    <select class="sl" id="atvfil"><option value="">Todas</option><option value="pendente">Pendentes</option><option value="concluida">Concluídas</option></select>
+    <select class="sl" id="atvprio"><option value="">Todas prioridades</option><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option></select>
+  </div>
+
+  <div id="atv-list">
+    ${ATIVS.map(a=>atvCard(a)).join('')}
+  </div>`;
+
+  document.getElementById('atvsrch').addEventListener('input',filterAtvs);
+  document.getElementById('atvfil').addEventListener('change',filterAtvs);
+  document.getElementById('atvprio').addEventListener('change',filterAtvs);
+}
+
+function atvCard(a){
+  const prioColor=a.prioridade==='alta'?'var(--er)':a.prioridade==='media'?'var(--wa)':'var(--t3)';
+  return`<div class="ativ-card ${a.status==='concluida'?'done':''}" id="atv-${a.id}" data-status="${a.status}" data-prio="${a.prioridade}">
+    <div class="ativ-prio" style="background:${prioColor}"></div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px;flex-wrap:wrap">
+        <span style="font-size:12px;font-weight:500;color:${a.status==='concluida'?'var(--t3)':'var(--t1)'}">${a.titulo}</span>
+        ${prioBadge(a.prioridade)}${tipoBadge(a.tipo)}
+        ${a.status==='concluida'?'<span class="badge bok">concluída</span>':''}
+      </div>
+      <div style="font-size:10px;color:var(--t2);margin-bottom:3px">${a.descricao}</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:9px;color:var(--t3)">
+        <span>📅 ${a.data} ${a.hora}</span>
+        <span>👤 ${a.responsavel}</span>
+        ${a.lead_id?`<span>🔗 Lead #${a.lead_id}</span>`:''}
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0">
+      ${a.status==='pendente'?`<button class="btn bto bts" style="font-size:9px" onclick="concluirAtv(${a.id})">✓ Concluir</button>`:''}
+      <button class="btn btg bts" style="font-size:9px" onclick="editarAtv(${a.id})">Editar</button>
+      <button class="btn bts" style="font-size:9px;color:var(--er);border-color:var(--er);background:transparent" onclick="excluirAtv(${a.id})">✕</button>
+    </div>
+  </div>`;
+}
+
+function filterAtvs(){
+  const q=(document.getElementById('atvsrch')?.value||'').toLowerCase();
+  const st=document.getElementById('atvfil')?.value||'';
+  const pr=document.getElementById('atvprio')?.value||'';
+  document.querySelectorAll('[id^="atv-"]').forEach(el=>{
+    const a=ATIVS.find(x=>x.id===parseInt(el.id.split('-')[1]));
+    if(!a)return;
+    const matchQ=!q||a.titulo.toLowerCase().includes(q)||a.descricao.toLowerCase().includes(q);
+    const matchSt=!st||a.status===st;
+    const matchPr=!pr||a.prioridade===pr;
+    el.style.display=(matchQ&&matchSt&&matchPr)?'':'none';
+  });
+}
+
+window.concluirAtv=function(id){
+  const a=ATIVS.find(x=>x.id===id);if(!a)return;
+  a.status='concluida';
+  AUDITLOG.unshift({time:new Date().toLocaleString('pt-BR').slice(0,14),user:'João S.',action:'atividade_concluida',entity:'atividades',detail:a.titulo,ip:'177.x.x.1'});
+  nav('atividades');showF(`Atividade "${a.titulo}" concluída!`);
+};
+window.excluirAtv=function(id){
+  const a=ATIVS.find(x=>x.id===id);if(!a)return;
+  if(!confirm(`Excluir "${a.titulo}"?`))return;
+  const idx=ATIVS.indexOf(a);ATIVS.splice(idx,1);
+  nav('atividades');showF('Atividade excluída','wa');
+};
+window.editarAtv=function(id){
+  const a=ATIVS.find(x=>x.id===id);if(!a)return;
+  openNovaAtividade(a);
+};
+
+window.openNovaAtividade=function(atv){
+  const isEdit=!!atv;
+  openMod(isEdit?`Editar — ${atv.titulo}`:'Nova Atividade',`
+    <div class="p2">
+      <div>
+        <div class="fg"><label class="fl">Título *</label><input class="fc" id="atv-titulo" value="${atv?.titulo||''}" placeholder="Ex: Retornar cliente dia 10" required></div>
+        <div class="fg"><label class="fl">Descrição</label><textarea class="fc" id="atv-desc" rows="2" style="resize:none" placeholder="Detalhes da atividade...">${atv?.descricao||''}</textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="fg"><label class="fl">Data *</label><input class="fc" id="atv-data" value="${atv?.data||''}" placeholder="dd/mm/aaaa"></div>
+          <div class="fg"><label class="fl">Hora</label><input class="fc" id="atv-hora" value="${atv?.hora||''}" placeholder="HH:MM"></div>
+        </div>
+        <div class="fg"><label class="fl">Responsável</label>
+          <select class="fc" id="atv-resp">
+            ${COLABS.filter(c=>c.status==='active').map(c=>`<option ${atv?.responsavel===c.nome?'selected':''}>${c.nome}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div>
+        <div class="fg"><label class="fl">Tipo</label>
+          <select class="fc" id="atv-tipo">
+            ${['ligacao','cobranca','rastreio','interno'].map(t=>`<option value="${t}" ${atv?.tipo===t?'selected':''}>${t}</option>`).join('')}
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Prioridade</label>
+          <select class="fc" id="atv-prio">
+            ${['alta','media','baixa'].map(p=>`<option value="${p}" ${atv?.prioridade===p?'selected':''}>${p}</option>`).join('')}
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Vincular a lead (opcional)</label>
+          <select class="fc" id="atv-lead">
+            <option value="">— nenhum —</option>
+            ${LEADS.map(l=>`<option value="${l.id}" ${atv?.lead_id===l.id?'selected':''}>#${l.id} ${l.nome.split(' ')[0]}</option>`).join('')}
+          </select>
+        </div>
+        ${atv?`<div class="fg"><label class="fl">Status</label>
+          <select class="fc" id="atv-status">
+            <option value="pendente" ${atv.status==='pendente'?'selected':''}>Pendente</option>
+            <option value="concluida" ${atv.status==='concluida'?'selected':''}>Concluída</option>
+          </select>
+        </div>`:''}
+      </div>
+    </div>
+  `,`<button class="btn btg bts" onclick="closeMod()">Cancelar</button>
+     <button class="btn btp bts" onclick="salvarAtv(${atv?.id||'null'})">${isEdit?'Salvar alterações':'Criar atividade'}</button>`);
+};
+
+window.salvarAtv=function(id){
+  const titulo=document.getElementById('atv-titulo')?.value.trim();
+  const data=document.getElementById('atv-data')?.value.trim();
+  if(!titulo||!data){showF('Título e data são obrigatórios','er');return;}
+  const obj={
+    titulo,
+    descricao:document.getElementById('atv-desc')?.value.trim()||'',
+    data,hora:document.getElementById('atv-hora')?.value.trim()||'',
+    responsavel:document.getElementById('atv-resp')?.value||'Admin',
+    tipo:document.getElementById('atv-tipo')?.value||'interno',
+    prioridade:document.getElementById('atv-prio')?.value||'media',
+    lead_id:parseInt(document.getElementById('atv-lead')?.value)||null,
+    status:document.getElementById('atv-status')?.value||'pendente',
+  };
+  if(id){Object.assign(ATIVS.find(x=>x.id===id),obj);}
+  else{ATIVS.unshift({id:Date.now(),...obj});}
+  AUDITLOG.unshift({time:new Date().toLocaleString('pt-BR').slice(0,14),user:'João S.',action:id?'atividade_editada':'atividade_criada',entity:'atividades',detail:titulo,ip:'177.x.x.1'});
+  closeMod();nav('atividades');showF(id?'Atividade atualizada!':'Atividade criada!');
+};
+
+// ═══════════════════════════════════════════════════
+// LEADS
+// ═══════════════════════════════════════════════════
+function pgLeads(c){
+  c.innerHTML=`
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+    <span style="font-family:var(--mono);font-size:12px">${LEADS.length} leads</span>
+    <input type="text" class="fc" id="lsrch" placeholder="Buscar..." style="width:200px;margin-left:auto;font-size:10px">
+  </div>
+  <div class="card"><div class="scroll-x"><table>
+    <thead><tr><th>#</th><th>Nome</th><th>Telefone</th><th>Produto</th><th>Valor</th><th>Ligação</th><th>Pedido</th><th>Log.</th><th>Validação</th><th>Score</th><th>UF</th><th></th></tr></thead>
+    <tbody id="ltb">
+    ${LEADS.map(l=>`<tr>
+      <td class="tm" style="font-size:9px">${l.id}</td>
+      <td style="font-size:11px">${l.nome}</td>
+      <td class="tm" style="font-size:9px">${l.tel}</td>
+      <td class="td" style="font-size:9px">${l.produto}</td>
+      <td class="tm">${money(l.valor)}</td>
+      <td>${ligBadge(l.ligacao)}</td>
+      <td>${pedidoBadge(l.pedido)}</td>
+      <td>${logBadge(l.logOk)}</td>
+      <td>${valBadge(l.val.status)}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:${l.val.score===null?'var(--t3)':scoreColor(l.val.score)}">${l.val.score!==null?l.val.score+'/100':'—'}</td>
+      <td><span class="badge bne" style="font-size:8px">${l.estado}</span></td>
+      <td><button class="btn btg bts" style="font-size:9px" onclick="openValForm(${l.id})">Validar</button></td>
+    </tr>`).join('')}
+    </tbody>
+  </table></div></div>`;
+  document.getElementById('lsrch').addEventListener('input',function(){
+    const q=this.value.toLowerCase();
+    document.querySelectorAll('#ltb tr').forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// VALIDAÇÃO — MÓDULO COMPLETO
+// ═══════════════════════════════════════════════════
+function pgValidacao(c){
+  const pend=LEADS.filter(l=>l.val.status==='pending').length;
+  const ap=LEADS.filter(l=>l.val.status==='approved').length;
+  const rj=LEADS.filter(l=>l.val.status==='rejected').length;
+  const tot=ap+rj||1;
+  const scoresL=LEADS.filter(l=>l.val.score!==null);
+  const avgS=scoresL.length?Math.round(scoresL.reduce((a,l)=>a+l.val.score,0)/scoresL.length):0;
+
+  c.innerHTML=`
+  <div class="kg" style="grid-template-columns:repeat(5,1fr);margin-bottom:10px">
+    <div class="kc" style="border-left:3px solid var(--wa)"><div class="kl">Pendentes</div><div class="kv" style="color:var(--wa)">${pend}</div><div class="ks">aguardando decisão</div></div>
+    <div class="kc" style="border-left:3px solid var(--ok)"><div class="kl">Aprovados</div><div class="kv" style="color:var(--ok)">${ap}</div><div class="ks">para expedição</div></div>
+    <div class="kc" style="border-left:3px solid var(--er)"><div class="kl">Rejeitados</div><div class="kv" style="color:var(--er)">${rj}</div><div class="ks">cancelados</div></div>
+    <div class="kc" style="border-left:3px solid var(--acc)"><div class="kl">Taxa aprovação</div><div class="kv" style="color:var(--acc)">${Math.round(ap/tot*100)}%</div><div class="ks">do total validado</div></div>
+    <div class="kc" style="border-left:3px solid var(--pu)"><div class="kl">Score médio</div><div class="kv" style="color:var(--pu)">${avgS||'—'}</div><div class="ks">0–100 pontos</div></div>
+  </div>
+  <div class="tl" id="vtabs">
+    <button class="tab on" data-tv="pending">Pendentes (${pend})</button>
+    <button class="tab" data-tv="all">Todos (${LEADS.length})</button>
+    <button class="tab" data-tv="approved">Aprovados (${ap})</button>
+    <button class="tab" data-tv="rejected">Rejeitados (${rj})</button>
+  </div>
+  <div style="padding:7px 12px;border-bottom:1px solid var(--b1);background:var(--card)">
+    <input type="text" class="fc" id="vsrch" placeholder="Buscar por nome, trans. key, telefone..." style="width:100%;font-size:10px">
+  </div>
+  <div class="card" style="border-top:none;border-radius:0 0 var(--r) var(--r)">
+    <div class="scroll-x"><table>
+      <thead><tr><th>#</th><th>Trans. key</th><th>Nome</th><th>Produto</th><th>Valor</th><th>Ligação</th><th>Pedido</th><th>Logística</th><th>Validação</th><th>Score</th><th>Risco</th><th>Op.</th><th>Dt. Prev.</th><th style="text-align:right">Ação</th></tr></thead>
+      <tbody id="valtb">
+      ${LEADS.map(l=>`<tr data-vs="${l.val.status}">
+        <td class="tm" style="font-size:9px">${l.id}</td>
+        <td class="tm" style="font-size:9px">${l.key}</td>
+        <td style="font-size:11px;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${l.nome}</td>
+        <td class="td" style="font-size:9px">${l.produto}</td>
+        <td class="tm" style="font-size:10px">${money(l.valor)}</td>
+        <td>${ligBadge(l.ligacao)}</td>
+        <td>${pedidoBadge(l.pedido)}</td>
+        <td>${logBadge(l.logOk)}</td>
+        <td>${valBadge(l.val.status)}</td>
+        <td style="font-family:var(--mono);font-size:10px;color:${l.val.score===null?'var(--t3)':scoreColor(l.val.score)}">${l.val.score!==null?l.val.score+'/100':'—'}</td>
+        <td>${riskBadge(l.val.risk)}</td>
+        <td class="td" style="font-size:9px">${l.val.operador||l.operador||'—'}</td>
+        <td class="td" style="font-size:9px">${l.dataPrev||'—'}</td>
+        <td style="text-align:right"><button class="btn btp bts" style="font-size:9px" onclick="openValForm(${l.id})">${l.val.status!=='pending'?'Ver':'Validar →'}</button></td>
+      </tr>`).join('')}
+      </tbody>
+    </table></div>
+  </div>`;
+
+  document.querySelectorAll('#vtabs .tab').forEach(tab=>{
+    tab.addEventListener('click',function(){
+      document.querySelectorAll('#vtabs .tab').forEach(t=>t.classList.remove('on'));this.classList.add('on');
+      const tv=this.dataset.tv;
+      document.querySelectorAll('#valtb tr').forEach(tr=>tr.style.display=(tv==='all'||tr.dataset.vs===tv)?'':'none');
+    });
+  });
+  document.getElementById('vsrch').addEventListener('input',function(){
+    const q=this.value.toLowerCase();
+    document.querySelectorAll('#valtb tr').forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');
+  });
+}
+
+// Formulário de validação completo
+window.openValForm=function(id){
+  const l=LEADS.find(x=>x.id===id);if(!l)return;
+  const v=l.val;
+  const isD=v.status==='approved'||v.status==='rejected';
+  const dis=isD?'disabled':'';
+  const sc=v.score!==null?v.score:scoreCalc(v);
+  const ri=v.risk||riskCalc(sc);
+
+  function chkRow(chk,name,label,desc,color='var(--acc)'){
+    return`<label class="chkr ${isD?'':''}" style="${isD?'pointer-events:none;opacity:.6':''}">
+      <input type="checkbox" id="vc-${name}" ${chk?'checked':''} ${dis} style="accent-color:${color}">
+      <div><div style="font-size:11px;color:var(--t1)">${label}</div><div style="font-size:9px;color:var(--t3)">${desc}</div></div>
+    </label>`;
+  }
+
+  const body=`
+  <div style="display:grid;grid-template-columns:1fr 210px;gap:12px;align-items:start">
+  <div>
+    <div class="card" style="margin-bottom:9px">
+      <div class="ch"><span class="ct2">Dados do pedido — planilha 002</span><span class="badge bac">${l.key}</span></div>
+      <div class="cb">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;font-size:10px">
+          ${[['Nome',l.nome],['Telefone',l.tel],['5 Dígitos',l.dig5],['Produto',l.produto],['Valor',money(l.valor)],['CPF/Doc',l.doc],['Endereço',l.endereco],['Logística',l.logCod+' · '+l.logOk],['Estado',l.estado]].map(([k,v2])=>`
+          <div><div class="kl">${k}</div><div style="color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v2}">${v2||'—'}</div></div>`).join('')}
+        </div>
+        ${l.obs?`<div style="background:var(--bg);border:1px solid var(--b1);border-radius:var(--r);padding:5px 8px;font-size:9px;color:var(--wa);margin-top:7px">⚠ ${l.obs}</div>`:''}
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:9px">
+      <div class="card">
+        <div class="ch"><span class="ct2">Logística / Status</span></div>
+        <div class="cb" style="padding:8px">
+          ${[['Ligação planilha',l.ligacao||'—'],['Status pedido',l.pedido||'—'],['Operador',l.operador||'—'],['Status Vendedor',l.statusVend||'—'],['Data prevista',l.dataPrev||'—']].map(([k,v2])=>`
+          <div class="info-r"><span class="ik">${k}</span><span class="iv" style="font-family:var(--sans)">${v2}</span></div>`).join('')}
+          <div style="margin-top:7px">
+            <label class="fl">Atualizar ligação</label>
+            <select class="fc" id="vc-ligacao" ${dis} style="font-size:10px">
+              <option value="" ${!v.ligacao?'selected':''}>—</option>
+              <option value="Atendeu" ${v.ligacao==='Atendeu'?'selected':''}>Atendeu</option>
+              <option value="Não Atendeu" ${v.ligacao==='Não Atendeu'?'selected':''}>Não Atendeu</option>
+            </select>
+          </div>
+          <div style="margin-top:6px">
+            <label class="fl">Status pedido</label>
+            <select class="fc" id="vc-pedido" ${dis} style="font-size:10px">
+              ${['','----','AG-DATA-ENVIO','AGUARD-CONFIRMAR','BOLETO ENVIADO','ENVIAR BOLETO','LIBERADO ENVIO'].map(s=>`<option value="${s}" ${v.pedido===s?'selected':''}>${s||'—'}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:8px">
+          <div class="ch"><span class="ct2">1. Contato</span></div>
+          <div class="cb" style="padding:7px">
+            ${chkRow(v.callAttempted,'call-att','Ligação tentada','Ao menos 1 tentativa')}
+            ${chkRow(v.callAnswered,'call-ans','Ligação atendida','Cliente atendeu e conversou')}
+            ${chkRow(v.wpConfirmed,'wp','WhatsApp / Logística OK','Confirmação por mensagem','var(--te)')}
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><span class="ct2">2. Confirmações</span></div>
+          <div class="cb" style="padding:7px">
+            ${chkRow(v.orderConfirmed,'ord','Pedido confirmado','Cliente reconhece a compra','var(--ok)')}
+            ${chkRow(v.addrConfirmed,'addr','Endereço confirmado','Endereço validado','var(--ok)')}
+            ${chkRow(v.prodConfirmed,'prod','Produto confirmado','Sabe o que vai receber','var(--ok)')}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:8px">
+      <div class="ch"><span class="ct2">3. Decisão</span><button type="button" class="btn btg bts" id="autoscbtn" ${isD?'disabled':''}>↻ Recalcular score</button></div>
+      <div class="cb" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <div class="fg" style="margin:0"><label class="fl">Score (0–100)</label><input type="number" class="fc" id="vc-score" min="0" max="100" value="${sc}" ${dis}></div>
+        <div class="fg" style="margin:0"><label class="fl">Risco</label>
+          <select class="fc" id="vc-risk" ${dis}>
+            <option value="low" ${ri==='low'?'selected':''}>Baixo ≥70</option>
+            <option value="medium" ${ri==='medium'?'selected':''}>Médio 40-69</option>
+            <option value="high" ${ri==='high'?'selected':''}>Alto &lt;40</option>
+          </select>
+        </div>
+        <div class="fg" style="margin:0"><label class="fl">Decisão</label>
+          <select class="fc" id="vc-status" ${isD?'disabled':''}>
+            <option value="pending" ${v.status==='pending'||!v.status?'selected':''}>Pendente</option>
+            <option value="approved" ${v.status==='approved'?'selected':''}>Aprovar → Expedição</option>
+            <option value="rejected" ${v.status==='rejected'?'selected':''}>Rejeitar → Cancelar</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+        <div class="fg" style="margin:0"><label class="fl">Motivo / justificativa</label><input type="text" class="fc" id="vc-reason" value="${v.reason||''}" placeholder="Ex: cliente confirmado, ok" ${dis}></div>
+        <div class="fg" style="margin:0"><label class="fl">Tentativas</label><input type="number" class="fc" id="vc-attempts" value="${v.attempts||0}" min="0" ${dis}></div>
+      </div>
+      <div class="fg" style="margin:8px 0 0"><label class="fl">Observações</label><textarea class="fc" id="vc-notes" rows="2" style="resize:none" ${dis}>${v.notes||''}</textarea></div>
+    </div>
+    ${isD?`<div style="background:rgba(243,156,18,.07);border:1px solid rgba(243,156,18,.25);border-radius:var(--r);padding:7px;font-size:10px;color:var(--wa)">⚠ Decisão já registrada. Contate o admin para reverter.</div>`:''}
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div class="card">
+      <div class="ch"><span class="ct2">Score</span></div>
+      <div class="cb" style="text-align:center;padding:10px">
+        <div class="sco" id="sc-circle" style="border-color:${scoreColor(sc)}">
+          <div style="font-family:var(--mono);font-size:22px;font-weight:500;color:${scoreColor(sc)}" id="sc-num">${sc}</div>
+          <div style="font-size:8px;color:var(--t3)">/100</div>
+        </div>
+        <div style="margin-top:7px" id="sc-risk">${riskBadge(ri)}</div>
+        ${!isD?`<button class="btn btg bts" style="margin-top:7px;width:100%" id="autoscbtn2">↻ Auto</button>`:''}
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct2">Progresso</span></div>
+      <div class="cb" style="padding:7px">
+        ${[['Lig. tentada',v.callAttempted,'call-att'],['Lig. atendida',v.callAnswered,'call-ans'],['WhatsApp OK',v.wpConfirmed,'wp'],['Pedido conf.',v.orderConfirmed,'ord'],['Endereço conf.',v.addrConfirmed,'addr'],['Produto conf.',v.prodConfirmed,'prod']].map(([lbl,val,n])=>`
+        <div class="info-r" id="prog-${n}">
+          <span style="font-size:10px;color:${val?'var(--t1)':'var(--t3)'}">${val?'✓':'○'} ${lbl}</span>
+        </div>`).join('')}
+        <div style="margin-top:7px">
+          <div style="font-size:9px;color:var(--t3);margin-bottom:3px">${[v.callAttempted,v.callAnswered,v.wpConfirmed,v.orderConfirmed,v.addrConfirmed,v.prodConfirmed].filter(Boolean).length}/6 critérios</div>
+          <div class="pr"><div class="pf" style="width:${Math.round([v.callAttempted,v.callAnswered,v.wpConfirmed,v.orderConfirmed,v.addrConfirmed,v.prodConfirmed].filter(Boolean).length/6*100)}%;background:var(--acc)"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>`;
+
+  const foot=isD
+    ?`<button class="btn btg bts" onclick="closeMod()">← Fechar</button>`
+    :`<button class="btn btg bts" onclick="closeMod()">Cancelar</button>
+      <button class="btn btg bts" onclick="saveVal(${id},'pending')">Salvar rascunho</button>
+      <button class="btn btr bts" onclick="if(confirm('Rejeitar este pedido?'))saveVal(${id},'rejected')">✕ Rejeitar</button>
+      <button class="btn bto bts" onclick="saveVal(${id},'approved')">✓ Aprovar → Expedição</button>`;
+
+  openMod(`Validação — ${l.key} · ${l.nome.split(' ')[0]} ${l.nome.split(' ').slice(-1)}`,body,foot);
+
+  if(!isD){
+    const names=['call-att','call-ans','wp','ord','addr','prod'];
+    function recalc(){
+      const fv={callAttempted:!!document.getElementById('vc-call-att')?.checked,callAnswered:!!document.getElementById('vc-call-ans')?.checked,wpConfirmed:!!document.getElementById('vc-wp')?.checked,orderConfirmed:!!document.getElementById('vc-ord')?.checked,addrConfirmed:!!document.getElementById('vc-addr')?.checked,prodConfirmed:!!document.getElementById('vc-prod')?.checked};
+      const s=scoreCalc({...fv,whatsappConfirmed:fv.wpConfirmed,customerConfirmedOrder:fv.orderConfirmed,confirmedAddress:fv.addrConfirmed,confirmedProduct:fv.prodConfirmed});
+      const r=riskCalc(s);const col=scoreColor(s);
+      const sn=document.getElementById('sc-num');const sc2=document.getElementById('sc-circle');
+      if(sn){sn.textContent=s;sn.style.color=col;if(sc2)sc2.style.borderColor=col;}
+      const srk=document.getElementById('sc-risk');if(srk)srk.innerHTML=riskBadge(r);
+      const si=document.getElementById('vc-score');if(si)si.value=s;
+      const ri2=document.getElementById('vc-risk');if(ri2)ri2.value=r;
+      names.forEach(n=>{const el=document.getElementById('vc-'+n);const pd=document.getElementById('prog-'+n);if(pd&&el){const chk=el.checked;pd.innerHTML=`<span style="font-size:10px;color:${chk?'var(--t1)':'var(--t3)'}">${chk?'✓':'○'} ${pd.querySelector('span').textContent.slice(2)}</span>`;}});
+    }
+    names.forEach(n=>{const el=document.getElementById('vc-'+n);if(el)el.addEventListener('change',recalc);});
+    ['autoscbtn','autoscbtn2'].forEach(bid=>{const b=document.getElementById(bid);if(b)b.addEventListener('click',recalc);});
+  }
+};
+
+window.saveVal=function(id,status){
+  const l=LEADS.find(x=>x.id===id);if(!l)return;
+  const callAtt=!!document.getElementById('vc-call-att')?.checked;
+  const callAns=!!document.getElementById('vc-call-ans')?.checked;
+  const wp=!!document.getElementById('vc-wp')?.checked;
+  const ord=!!document.getElementById('vc-ord')?.checked;
+  const addr=!!document.getElementById('vc-addr')?.checked;
+  const prod=!!document.getElementById('vc-prod')?.checked;
+  const sc=scoreCalc({callAttempted:callAtt,callAnswered:callAns,wpConfirmed:wp,orderConfirmed:ord,addrConfirmed:addr,prodConfirmed:prod});
+  const ri=riskCalc(sc);
+  const lig=document.getElementById('vc-ligacao')?.value||l.val.ligacao;
+  const ped=document.getElementById('vc-pedido')?.value||l.val.pedido;
+  l.val={...l.val,status,score:sc,risk:ri,callAttempted:callAtt,callAnswered:callAns,wpConfirmed:wp,orderConfirmed:ord,addrConfirmed:addr,prodConfirmed:prod,ligacao:lig,pedido:ped,attempts:parseInt(document.getElementById('vc-attempts')?.value)||0,reason:document.getElementById('vc-reason')?.value||'',notes:document.getElementById('vc-notes')?.value||''};
+  l.ligacao=lig;l.pedido=ped;
+  AUDITLOG.unshift({time:new Date().toLocaleString('pt-BR').slice(0,14),user:'João S.',action:'validation_'+status,entity:'leads',detail:`${l.key} — score ${sc}`,ip:'177.x.x.1'});
+  closeMod();nav('validacao');
+  const msgs={approved:`✓ ${l.nome.split(' ')[0]} aprovado — score ${sc}/100`,rejected:`${l.nome.split(' ')[0]} rejeitado`,pending:`Rascunho salvo — score ${sc}/100`};
+  showF(msgs[status],status==='approved'?'ok':status==='rejected'?'er':'wa');
+};
+
+// ═══════════════════════════════════════════════════
+// PEDIDOS / COBRANÇA / ENTREGUES / DEVOLVIDOS / RASTREIO
+// ═══════════════════════════════════════════════════
+function pgPedidos(c){
+  const data=fd();
+  c.innerHTML=`
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+    <span style="font-family:var(--mono);font-size:12px">${data.length} pedidos</span>
+    <input type="text" class="fc" id="psrch" placeholder="Buscar..." style="width:200px;margin-left:auto;font-size:10px">
+  </div>
+  <div class="card"><div class="scroll-x"><table>
+    <thead><tr><th>Key</th><th>Data</th><th>Nome</th><th>Plano</th><th>Valor</th><th>Forma Pag.</th><th>Status</th><th>St. Recebido</th><th>Alterado</th><th>Afterpay</th><th>UF</th><th></th></tr></thead>
+    <tbody id="ptb">
+    ${data.map(r=>`<tr>
+      <td class="tm" style="font-size:9px">${r.key}</td>
+      <td class="td" style="font-size:9px">${r.data}</td>
+      <td style="font-size:10px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.nome}</td>
+      <td class="td" style="font-size:9px">${r.plano}</td>
+      <td class="tm">${money(r.valor)}</td>
+      <td class="td" style="font-size:9px">${r.forma_pag.trim()}</td>
+      <td>${stBadge(r.status)}</td>
+      <td>${recBadge(r.st_rec)}</td>
+      <td>${altBadge(r.alterado)}</td>
+      <td>${r.afterpay?`<span class="badge bpu">SIM</span>`:'<span class="td">—</span>'}</td>
+      <td><span class="badge bne" style="font-size:8px">${r.estado}</span></td>
+      <td><button class="btn btg bts" style="font-size:9px" onclick="openPedido(${r.id})">Ver</button></td>
+    </tr>`).join('')}
+    </tbody>
+  </table></div></div>`;
+  document.getElementById('psrch').addEventListener('input',function(){
+    const q=this.value.toLowerCase();document.querySelectorAll('#ptb tr').forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');
+  });
+}
+
+function pgCobranca(c){
+  const cob=fd().filter(r=>r.afterpay);
+  const agRet=cob.filter(r=>r.st_rec==='Aguardando Retirada');
+  const entregue=cob.filter(r=>r.st_rec==='Entregue');
+  const frustr=cob.filter(r=>r.st_rec==='Frustrada');
+  c.innerHTML=`
+  <div class="kg" style="grid-template-columns:repeat(4,1fr);margin-bottom:10px">
+    <div class="kc" style="border-left:3px solid var(--wa)"><div class="kl">Ag. Retirada</div><div class="kv" style="color:var(--wa)">${agRet.length}</div><div class="ks">acionar cobrança</div></div>
+    <div class="kc" style="border-left:3px solid var(--ok)"><div class="kl">Entregues</div><div class="kv" style="color:var(--ok)">${entregue.length}</div><div class="ks">aguardam confirmação</div></div>
+    <div class="kc" style="border-left:3px solid var(--er)"><div class="kl">Frustradas</div><div class="kv" style="color:var(--er)">${frustr.length}</div><div class="ks">sem pagamento</div></div>
+    <div class="kc" style="border-left:3px solid var(--te)"><div class="kl">Total afterpay</div><div class="kv" style="color:var(--te)">${cob.length}</div><div class="ks">modelo afterpay</div></div>
+  </div>
+  <div class="tl" id="cobtabs">
+    <button class="tab on" data-ct="agret">Ag. Retirada (${agRet.length})</button>
+    <button class="tab" data-ct="entregue">Entregues (${entregue.length})</button>
+    <button class="tab" data-ct="frustrada">Frustradas (${frustr.length})</button>
+    <button class="tab" data-ct="todos">Todos (${cob.length})</button>
+  </div>
+  <div style="padding:7px 12px;border-bottom:1px solid var(--b1);background:var(--card);display:flex;gap:8px">
+    <input type="text" class="fc" id="cobsrch" placeholder="Buscar nome, key, rastreio..." style="flex:1;font-size:10px">
+  </div>
+  <div class="card" style="border-top:none;border-radius:0 0 var(--r) var(--r)">
+    <div class="scroll-x"><table>
+      <thead><tr><th>Key</th><th>Nome</th><th>Tel.</th><th>Produto</th><th>Valor</th><th>Rastreio</th><th>Status</th><th>St.Rec.</th><th>Alterado</th><th>N0·2</th><th>N0·4</th><th>N7·1</th><th>N7·2</th><th>N9·1</th><th>N9·2</th><th>RR</th><th>Ação</th></tr></thead>
+      <tbody id="cobtb">
+      ${cob.map(r=>{
+        const g={agret:agRet,entregue,frustrada:frustr,todos:cob};
+        return`<tr data-id="${r.id}" data-ct="${r.st_rec==='Aguardando Retirada'?'agret':r.st_rec==='Entregue'?'entregue':r.st_rec==='Frustrada'?'frustrada':'todos'}">
+          <td class="tm" style="font-size:9px">${r.key}</td>
+          <td style="font-size:10px;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.nome}</td>
+          <td class="tm" style="font-size:9px">${r.tel}</td>
+          <td class="td" style="font-size:9px">${r.plano}</td>
+          <td class="tm">${money(r.valor)}</td>
+          <td class="tm" style="font-size:9px">${r.rastreio||'—'}</td>
+          <td>${stBadge(r.status)}</td>
+          <td>${recBadge(r.st_rec)}</td>
+          <td>${altBadge(r.alterado)}</td>
+          ${['N0_2','N0_4','N7_1','N7_2','N9_1','N9_2','RR'].map(k=>`<td style="min-width:65px;padding:3px 4px"><input type="text" value="${r[k]||''}" placeholder="—" style="width:62px;background:${r[k]?'rgba(46,204,113,.08)':'var(--inp)'};border:1px solid ${r[k]?'rgba(46,204,113,.3)':'var(--b1)'};color:${r[k]?'var(--ok)':'var(--t3)'};border-radius:3px;padding:2px 4px;font-size:9px;font-family:var(--mono);outline:none" onchange="(function(rid,key,val){const r=D.find(x=>x.id===rid);if(r){r[key]=val;this.style.background=val?'rgba(46,204,113,.08)':'var(--inp)';this.style.borderColor=val?'rgba(46,204,113,.3)':'var(--b1)';this.style.color=val?'var(--ok)':'var(--t3)';}}).call(this,${r.id},'${k}',this.value)" onclick="event.stopPropagation()"></td>`).join('')}
+          <td><button class="btn btp bts" style="font-size:9px" onclick="openCobrancaDetail(${r.id})">Detalhe</button></td>
+        </tr>`;}).join('')}
+      </tbody>
+    </table></div>
+  </div>`;
+
+  document.querySelectorAll('#cobtabs .tab').forEach(tab=>{
+    tab.addEventListener('click',function(){
+      document.querySelectorAll('#cobtabs .tab').forEach(t=>t.classList.remove('on'));this.classList.add('on');
+      const tv=this.dataset.ct;
+      document.querySelectorAll('#cobtb tr').forEach(tr=>tr.style.display=(tv==='todos'||tr.dataset.ct===tv)?'':'none');
+    });
+  });
+  document.getElementById('cobsrch').addEventListener('input',function(){
+    const q=this.value.toLowerCase();document.querySelectorAll('#cobtb tr').forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');
+  });
+}
+
+window.openCobrancaDetail=function(id){
+  const r=D.find(x=>x.id===id);if(!r)return;
+  openMod(`Cobrança — ${r.nome.split(' ')[0]} · ${r.key}`,`
+  <div class="p2">
+    <div>
+      <div class="sec">Dados do pedido</div>
+      ${[['Trans. key',r.key],['Nome',r.nome],['Telefone',r.tel],['Produto',r.plano+' · '+r.frascos+'fx'],['Valor',money(r.valor)],['Forma pag.',r.forma_pag],['Rastreio',r.rastreio||'—'],['Status',r.status],['St. Recebido',r.st_rec||'—'],['Afterpay',r.afterpay?'SIM':'NÃO'],['Pagos',r.pagos],['Alterado',r.alterado],['Endereço',r.endereco]].map(([k,v2])=>`<div class="info-r"><span class="ik">${k}</span><span class="iv" style="font-family:var(--sans)">${v2||'—'}</span></div>`).join('')}
+    </div>
+    <div>
+      <div class="sec" style="color:var(--acc)">◬ Registro de cobrança</div>
+      <div style="font-size:9px;color:var(--t3);margin-bottom:8px"><b style="color:var(--t2)">N[Dia]·[Tentativa]</b> — Ex: N0·2 = Dia 0, 2ª tentativa</div>
+      ${[['N0 — Dia 0 (entrega)',['N0_2','N0_4','N0_5']],['N7 — Dia 7',['N7_1','N7_2','N7_4']],['N9 — Dia 9',['N9_1','N9_2']]].map(([titulo,campos])=>`
+      <div class="cob-day">
+        <div class="cob-dh"><span style="font-family:var(--mono);font-size:9px;color:var(--acc)">${titulo}</span></div>
+        ${campos.map(k=>`<div class="cob-tent"><span style="font-size:9px;color:var(--t3);min-width:40px">${k.split('_')[1]}ª tent.</span><input type="text" class="fc" id="md-${k}-${r.id}" value="${r[k]||''}" placeholder="—" style="font-size:10px;padding:2px 6px"></div>`).join('')}
+      </div>`).join('')}
+      <div class="cob-day">
+        <div class="cob-dh"><span style="font-family:var(--mono);font-size:9px;color:var(--er)">RR — Resultado final</span></div>
+        <div class="cob-tent"><input type="text" class="fc" id="md-RR-${r.id}" value="${r.RR||''}" placeholder="PAGO / FRUSTRADO / SEM CONTATO" style="font-size:10px;padding:2px 6px"></div>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:9px;flex-wrap:wrap">
+        <button class="btn bto bts" onclick="markPago(${r.id})">✓ Marcar pago</button>
+        <button class="btn btr bts" onclick="markFrust(${r.id})">✕ Frustrar</button>
+        <button class="btn btw bts" onclick="markEspera(${r.id})">⏳ Em espera</button>
+      </div>
+    </div>
+  </div>`,
+  `<button class="btn btg bts" onclick="closeMod()">Fechar</button>
+   <button class="btn btp bts" onclick="saveCob(${r.id})">Salvar cobrança</button>`);
+};
+
+window.saveCob=function(id){
+  const r=D.find(x=>x.id===id);if(!r)return;
+  ['N0_2','N0_4','N0_5','N7_1','N7_2','N7_4','N9_1','N9_2','RR'].forEach(k=>{const el=document.getElementById(`md-${k}-${id}`);if(el)r[k]=el.value;});
+  closeMod();nav('cobranca');showF(`Cobrança de ${r.nome.split(' ')[0]} salva`);
+};
+window.markPago=function(id){const r=D.find(x=>x.id===id);if(!r)return;r.alterado='PAGO';r.RR='PAGO';closeMod();nav('cobranca');showF(`Pago — ${r.nome.split(' ')[0]}`);};
+window.markFrust=function(id){const r=D.find(x=>x.id===id);if(!r)return;r.alterado='FRUSTRADO';r.RR='FRUSTRADO';r.st_rec='Frustrada';closeMod();nav('cobranca');showF(`Frustrado — ${r.nome.split(' ')[0]}`,'er');};
+window.markEspera=function(id){const r=D.find(x=>x.id===id);if(!r)return;r.alterado='ESPERA';closeMod();nav('cobranca');showF(`Em espera — ${r.nome.split(' ')[0]}`,'wa');};
+
+function pgEntregues(c){
+  const data=fd().filter(r=>r.st_rec==='Entregue');
+  renderSimpleTable(c,'Entregues',data);
+}
+function pgDevolvidos(c){
+  const data=fd().filter(r=>r.status==='Devolvido');
+  renderSimpleTable(c,'Devolvidos',data);
+}
+function pgRastreio(c){
+  const data=fd().filter(r=>r.rastreio);
+  renderSimpleTable(c,'Rastreio',data);
+}
+
+function renderSimpleTable(c,titulo,data){
+  c.innerHTML=`
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+    <span style="font-family:var(--mono);font-size:12px">${titulo} — ${data.length}</span>
+    <input type="text" class="fc" id="tsrch" placeholder="Buscar..." style="width:200px;margin-left:auto;font-size:10px">
+  </div>
+  <div class="card"><div class="scroll-x"><table>
+    <thead><tr><th>Key</th><th>Data</th><th>Nome</th><th>Plano</th><th>Valor</th><th>Rastreio</th><th>Status</th><th>St.Rec.</th><th>Alterado</th><th>UF</th></tr></thead>
+    <tbody id="ttb">
+    ${data.map(r=>`<tr>
+      <td class="tm" style="font-size:9px">${r.key}</td>
+      <td class="td">${r.data}</td>
+      <td style="font-size:10px">${r.nome}</td>
+      <td class="td" style="font-size:9px">${r.plano}</td>
+      <td class="tm">${money(r.valor)}</td>
+      <td class="tm" style="font-size:9px">${r.rastreio||'—'}</td>
+      <td>${stBadge(r.status)}</td>
+      <td>${recBadge(r.st_rec)}</td>
+      <td>${altBadge(r.alterado)}</td>
+      <td><span class="badge bne" style="font-size:8px">${r.estado}</span></td>
+    </tr>`).join('')}
+    </tbody>
+  </table></div></div>`;
+  document.getElementById('tsrch').addEventListener('input',function(){
+    const q=this.value.toLowerCase();document.querySelectorAll('#ttb tr').forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');
+  });
+}
+
+window.openPedido=function(id){
+  const r=D.find(x=>x.id===id);if(!r)return;
+  openMod(`Pedido — ${r.nome}`,`<div class="p2">${[['Trans. key',r.key],['Data/Hora',r.data+' '+r.hora],['Pago em',r.pago_em],['Nome',r.nome],['Telefone',r.tel],['CPF',r.doc],['Produto',r.plano],['Frascos',r.frascos+'fx'],['Valor',money(r.valor)],['Forma pag.',r.forma_pag],['Afterpay',r.afterpay?'SIM':'NÃO'],['Rastreio',r.rastreio||'—'],['Status',r.status],['St. Recebido',r.st_rec||'—'],['Endereço',r.endereco],['Cidade/UF',r.cidade+' - '+r.estado]].map(([k,v2])=>`<div class="info-r"><span class="ik">${k}</span><span class="iv" style="font-family:var(--sans)">${v2||'—'}</span></div>`).join('')}</div>`,
+  `<button class="btn btg bts" onclick="closeMod()">Fechar</button>${r.afterpay?`<button class="btn btp bts" onclick="closeMod();openCobrancaDetail(${r.id})">Ver cobrança</button>`:''}`);
+};
+
+// ═══════════════════════════════════════════════════
+// FINANCEIRO & AFILIADOS
+// ═══════════════════════════════════════════════════
+function pgFinanceiro(c){
+  const ap=fd().filter(r=>r.status==='Pagamento Aprovado');
+  const rec=ap.reduce((a,r)=>a+r.valor,0);
+  const com=ap.reduce((a,r)=>a+r.comissao,0);
+  c.innerHTML=`
+  <div class="kg" style="grid-template-columns:repeat(4,1fr)">
+    <div class="kc" style="border-left:3px solid var(--ok)"><div class="kl">Receita bruta</div><div class="kv" style="color:var(--ok);font-size:14px">${money(rec)}</div><div class="ks">${ap.length} pedidos</div></div>
+    <div class="kc" style="border-left:3px solid var(--acc)"><div class="kl">Comissões</div><div class="kv" style="color:var(--acc);font-size:14px">${money(com)}</div></div>
+    <div class="kc" style="border-left:3px solid var(--te)"><div class="kl">Líquido estimado</div><div class="kv" style="color:var(--te);font-size:14px">${money(rec-com)}</div></div>
+    <div class="kc" style="border-left:3px solid var(--pu)"><div class="kl">Ticket médio</div><div class="kv" style="color:var(--pu);font-size:14px">${ap.length?money(Math.round(rec/ap.length)):'—'}</div></div>
+  </div>
+  <div class="p2">
+    <div class="card"><div class="ch"><span class="ct2">Por forma de pagamento</span></div><div style="padding:0">
+      ${Object.entries(ap.reduce((a,r)=>{const k=r.forma_pag.trim()||'Outros';a[k]=(a[k]||0)+r.valor;return a;},{})).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`
+      <div class="row-l" style="padding:5px 12px"><span style="color:var(--t2)">${k}</span><span style="font-family:var(--mono);color:var(--ok)">${money(v)}</span></div>`).join('')}
+    </div></div>
+    <div class="card"><div class="ch"><span class="ct2">Por estado (top 8)</span></div><div style="padding:0">
+      ${Object.entries(ap.reduce((a,r)=>{if(r.estado)a[r.estado]=(a[r.estado]||0)+r.valor;return a;},{})).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([e,v])=>`
+      <div class="row-l" style="padding:5px 12px"><span style="color:var(--t2)">${e}</span><span style="font-family:var(--mono);color:var(--ok)">${money(v)}</span></div>`).join('')}
+    </div></div>
+  </div>`;
+}
+
+function pgAfiliados(c){
+  const bySrc=D.reduce((a,r)=>{const k=r.src||'direto';if(!a[k])a[k]={n:0,val:0,com:0,ap:0};a[k].n++;a[k].val+=r.valor;a[k].com+=r.comissao;if(r.status==='Pagamento Aprovado')a[k].ap++;return a;},{});
+  c.innerHTML=`<div style="margin-bottom:10px;font-family:var(--mono);font-size:12px">Afiliados / Src</div>
+  <div class="card"><table>
+    <thead><tr><th>Src</th><th>Pedidos</th><th>Aprovados</th><th>Taxa</th><th>Receita</th><th>Comissão</th></tr></thead>
+    <tbody>
+    ${Object.entries(bySrc).sort((a,b)=>b[1].ap-a[1].ap).map(([src,v])=>`<tr>
+      <td><span class="badge bac">${src}</span></td>
+      <td class="tm">${v.n}</td><td style="color:var(--ok);font-family:var(--mono)">${v.ap}</td>
+      <td style="font-family:var(--mono);color:${v.n&&Math.round(v.ap/v.n*100)>=60?'var(--ok)':'var(--wa)'}">${v.n?Math.round(v.ap/v.n*100):0}%</td>
+      <td class="tm">${money(v.val)}</td><td class="tm">${money(v.com)}</td>
+    </tr>`).join('')}
+    </tbody>
+  </table></div>`;
+}
+
+// ═══════════════════════════════════════════════════
+// COLABORADORES
+// ═══════════════════════════════════════════════════
+function pgColaboradores(c){
+  c.innerHTML=`
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+    <span style="font-family:var(--mono);font-size:12px">Colaboradores — ${COLABS.length}</span>
+    <button class="btn btp bts" style="margin-left:auto" onclick="openNovoColab()">+ Adicionar</button>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:9px" id="colab-grid">
+    ${COLABS.map(u=>colabCard(u)).join('')}
+  </div>
+  <div class="card" style="margin-top:12px">
+    <div class="ch"><span class="ct2">Permissões disponíveis no sistema</span></div>
+    <div class="cb">
+      <div class="perm-grid">
+        ${ALL_PERMS.map(p=>`<div class="perm-item"><div class="col-dot" style="width:6px;height:6px;border-radius:50%;background:var(--acc);flex-shrink:0"></div><span style="font-family:var(--mono);font-size:10px;color:var(--t2)">${p}</span></div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function colabCard(u){
+  const initials=u.nome.split(' ').map(w=>w[0]).slice(0,2).join('');
+  const colors=[['var(--ad)','var(--acc)'],['rgba(155,89,182,.2)','var(--pu)'],['rgba(26,188,156,.2)','var(--te)'],['rgba(231,76,60,.15)','var(--er)'],['rgba(243,156,18,.15)','var(--wa)']];
+  const[bg,fg]=colors[u.id%colors.length];
+  return`<div class="card" style="padding:11px" id="colab-${u.id}">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <div class="avatar" style="background:${bg};color:${fg}">${initials}</div>
+      <div style="min-width:0">
+        <div style="font-size:12px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${u.nome}${u.admin?` <span class="badge bwa" style="font-size:7px">admin</span>`:''}</div>
+        <div style="font-size:9px;color:var(--t3);font-family:var(--mono)">${u.email}</div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--t2);margin-bottom:7px">${u.tel}</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px">
+      <span class="badge ${u.status==='active'?'bok':'bne'}">${u.status==='active'?'ativo':'inativo'}</span>
+      ${!u.admin?`<div style="display:flex;gap:4px">
+        <button class="btn btg bts" style="font-size:9px" onclick="editPerms(${u.id})">Permissões</button>
+        <button class="btn btg bts" style="font-size:9px" onclick="toggleColab(${u.id})">${u.status==='active'?'Desativar':'Ativar'}</button>
+      </div>`:''}
+    </div>
+  </div>`;
+}
+
+window.openNovoColab=function(){
+  openMod('Adicionar colaborador',`
+    <div class="fg"><label class="fl">Nome *</label><input class="fc" id="cn" placeholder="Nome completo"></div>
+    <div class="fg"><label class="fl">E-mail *</label><input class="fc" id="ce" type="email" placeholder="email@dominio.com"></div>
+    <div class="fg"><label class="fl">Telefone</label><input class="fc" id="ct" placeholder="(00) 00000-0000"></div>`,
+  `<button class="btn btg bts" onclick="closeMod()">Cancelar</button>
+   <button class="btn btp bts" onclick="addColab()">Criar</button>`);
+};
+window.addColab=function(){
+  const n=document.getElementById('cn')?.value.trim();const e=document.getElementById('ce')?.value.trim();
+  if(!n||!e){showF('Nome e e-mail obrigatórios','er');return;}
+  COLABS.push({id:Date.now(),nome:n,email:e,tel:document.getElementById('ct')?.value.trim()||'—',status:'active',admin:false,perms:['dashboard_view']});
+  AUDITLOG.unshift({time:new Date().toLocaleString('pt-BR').slice(0,14),user:'Admin',action:'colab_criado',entity:'colaboradores',detail:n,ip:'200.x.x.7'});
+  closeMod();nav('colaboradores');showF(`${n} criado`);
+};
+window.toggleColab=function(id){
+  const u=COLABS.find(x=>x.id===id);if(!u)return;
+  u.status=u.status==='active'?'inactive':'active';
+  nav('colaboradores');showF(`${u.nome} ${u.status==='active'?'ativado':'desativado'}`,'wa');
+};
+window.editPerms=function(id){
+  const u=COLABS.find(x=>x.id===id);if(!u)return;
+  openMod(`Permissões — ${u.nome}`,`
+    <div style="font-size:10px;color:var(--t3);margin-bottom:8px">Selecione as permissões para ${u.nome}:</div>
+    <div class="perm-grid">
+      ${ALL_PERMS.map(p=>`<label class="perm-item">
+        <input type="checkbox" id="perm-${p}" ${u.perms.includes('*')||u.perms.includes(p)?'checked':''} style="accent-color:var(--acc)">
+        <span style="font-family:var(--mono)">${p}</span>
+      </label>`).join('')}
+    </div>`,
+  `<button class="btn btg bts" onclick="closeMod()">Cancelar</button>
+   <button class="btn btp bts" onclick="savePerms(${id})">Salvar permissões</button>`);
+};
+window.savePerms=function(id){
+  const u=COLABS.find(x=>x.id===id);if(!u)return;
+  u.perms=ALL_PERMS.filter(p=>document.getElementById(`perm-${p}`)?.checked);
+  AUDITLOG.unshift({time:new Date().toLocaleString('pt-BR').slice(0,14),user:'Admin',action:'perms_atualizadas',entity:'colaboradores',detail:u.nome,ip:'200.x.x.7'});
+  closeMod();nav('colaboradores');showF(`Permissões de ${u.nome} salvas`);
+};
+
+// ═══════════════════════════════════════════════════
+// IMPORTAR & LOGS
+// ═══════════════════════════════════════════════════
+function pgImportar(c){
+  c.innerHTML=`
+  <div style="max-width:680px;margin:0 auto">
+    <div class="card" style="margin-bottom:10px">
+      <div class="ch"><span class="ct2">Importar planilha (.xlsx / .csv)</span></div>
+      <div class="cb">
+        <div style="border:2px dashed var(--b2);border-radius:7px;padding:24px;text-align:center;cursor:pointer;position:relative;transition:all .2s" id="uz" onmouseenter="this.style.borderColor='var(--acc)'" onmouseleave="this.style.borderColor='var(--b2)'">
+          <input type="file" accept=".xlsx,.csv,.xls" onchange="handleImport(this)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%">
+          <div style="font-size:22px;opacity:.3;margin-bottom:6px">⊞</div>
+          <div style="font-size:12px;color:var(--t1);margin-bottom:3px">Arraste ou clique para selecionar</div>
+          <div style="font-size:10px;color:var(--t3)">Suporta .xlsx · .csv · .xls</div>
+        </div>
+        <div id="imp-preview" style="margin-top:8px"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct2">Colunas obrigatórias da planilha</span></div>
+      <div class="cb">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+          ${[['Codigo transação','identificação única'],['Nome comprador','nome do cliente'],['Telefone','com DDI 55'],['status','status Braip'],['status recebido','status logística'],['Afterpay','1 = afterpay'],['Cod. Rastreio','código Correios'],['valor','em reais (ex: 297)'],['comissão','em reais'],['forma de pagamento','CASH/Boleto/Pix'],['Plano','plano do produto'],['Frascos','quantidade'],['Estado','UF'],['Cidade','cidade'],['Endereço','endereço completo'],['Documento','CPF/CNPJ'],['PAGOS','lote pagamento'],['Alterado','PAGO/ESPERA'],['N0-2 a N9-2','tentativas cobrança'],['RR','resultado final'],['src','afiliado/origem']].map(([col,desc])=>`
+          <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:var(--bg);border:1px solid var(--b1);border-radius:var(--r)">
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--ok);flex-shrink:0"></div>
+            <div><div style="font-family:var(--mono);font-size:9px;color:var(--t1)">${col}</div><div style="font-size:9px;color:var(--t3)">${desc}</div></div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+window.handleImport=function(input){
+  const f=input.files[0];if(!f)return;
+  const p=document.getElementById('imp-preview');
+  if(p)p.innerHTML=`<div class="fl2 wa"><span>⚠</span> Arquivo <b>${f.name}</b> (${(f.size/1024).toFixed(0)} KB) selecionado. Em produção, seria processado e importado automaticamente.</div>`;
+};
+
+function pgLogs(c){
+  c.innerHTML=`
+  <div style="margin-bottom:10px;font-family:var(--mono);font-size:12px">Logs — ${AUDITLOG.length} registros</div>
+  <div class="card"><div class="scroll-x"><table>
+    <thead><tr><th>Data/Hora</th><th>Usuário</th><th>Ação</th><th>Entidade</th><th>Detalhe</th><th>IP</th></tr></thead>
+    <tbody>
+    ${AUDITLOG.map(a=>{
+      const cls={validation_approved:'bok',validation_rejected:'ber',validation_pending:'bwa',login:'bac',colab_criado:'bte',perms_atualizadas:'bpu',atividade_criada:'bac',atividade_concluida:'bok',atividade_editada:'bwa'}[a.action]||'bne';
+      return`<tr>
+        <td class="tm">${a.time}</td>
+        <td style="font-size:11px">${a.user}</td>
+        <td><span class="badge ${cls}" style="font-size:8px">${a.action}</span></td>
+        <td class="td">${a.entity}</td>
+        <td class="td">${a.detail}</td>
+        <td class="tm" style="font-size:9px">${a.ip}</td>
+      </tr>`;}).join('')}
+    </tbody>
+  </table></div></div>`;
+}
+
+// ── INIT ──────────────────────────────────────────
+['sf-status','sf-estado'].forEach(id=>{
+  document.getElementById(id).addEventListener('change',()=>nav(curP));
+});
+initFilters();
+document.querySelectorAll('.ni').forEach(i=>i.addEventListener('click',()=>nav(i.dataset.p)));
+nav('dash');
+</script>
